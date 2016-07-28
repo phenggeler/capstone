@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+
+<h2>Results for <%= @domain.name %></h2>
+<h3>UA Code for <%= @domain.uacode %></h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Uacode</th>
+      <th>Pub ID</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @domains.each do |domain| %>
+      <tr>
+        <td><%= link_to domain.name, domain_path(domain) %></td>
+        <td><%= domain.uacode %></td>
+        <td><%= domain.pubid %></td>
+        <td><%= link_to 'Edit', edit_domain_path(domain) %></td>
+        <td><%= link_to 'Destroy', domain, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<br>
+
+<%= link_to 'Edit', edit_domain_path(@domain) %> |
+<%= link_to 'Back', domains_path %>
