@@ -108,7 +108,12 @@ end
     end
     
     darray.each do |dom|
-      if (!dom.include? "www." )
+      if (dom.include? "www." )
+        dom.slice!("www.")
+        @domain1 = Domain.new(name: dom, uacode: @match)
+        @domain1.save
+      end
+      if (!dom.include? "www.")
         @domain1 = Domain.new(name: dom, uacode: @match)
         @domain1.save
       end
