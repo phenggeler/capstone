@@ -71,7 +71,7 @@ class DomainsController < ApplicationController
       end
     end
     
-    source = open(uri).read
+    source = open(uri,:allow_redirections => :all).read
     arr= source.split(/\n/)
     arr.each do |st|
 
