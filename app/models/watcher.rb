@@ -1,10 +1,9 @@
 class Watcher < ApplicationRecord
     
-    def current?(author)
+    def current?(watcher)
         #pass emails
-        @author = author
         @watcher = watcher
-        uri = URI('http://'+domain)
+        uri = URI('http://'+@watcher.domain)
         begin
           page = HTTParty.get(uri)
         rescue SocketError => e
@@ -14,7 +13,7 @@ class Watcher < ApplicationRecord
         #this is where we transfer our http response into Nokogiri object
         parse_page = Nokogiri::HTML(page)
         if (!source.eql? doc.text)
-            UserMailer.site_change(@author, @watcher).deliver
+            UserMailer.site_change_email(@watcher).deliver
         end
         source.eql? doc.text
     end

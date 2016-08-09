@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160805150800) do
+ActiveRecord::Schema.define(version: 20160809155700) do
 
   create_table "authors", force: :cascade do |t|
     t.string   "username"
@@ -20,6 +20,21 @@ ActiveRecord::Schema.define(version: 20160805150800) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["email"], name: "index_authors_on_email", unique: true
+  end
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
   create_table "domains", force: :cascade do |t|
@@ -35,6 +50,7 @@ ActiveRecord::Schema.define(version: 20160805150800) do
     t.text     "source"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "email"
   end
 
 end

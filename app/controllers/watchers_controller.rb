@@ -39,6 +39,7 @@ class WatchersController < ApplicationController
     #@watcher = Watcher.new(watcher_params)
     
     str = params[:watcher][:domain]
+    email = params[:watcher][:email]
     uri = URI('http://'+str)
     begin
       page = HTTParty.get(uri)
@@ -50,7 +51,7 @@ class WatchersController < ApplicationController
     parse_page = Nokogiri::HTML(page)
     
 
-    @watcher = Watcher.new(domain: str, source: doc.text)
+    @watcher = Watcher.new(domain: str, source: doc.text, email: email)
 
     
     respond_to do |format|

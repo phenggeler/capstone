@@ -8,10 +8,9 @@ class UserMailer < ApplicationMailer
         mail(to: @author.email, subject: 'Welcome to My Awesome Site')
     end
     
-    def site_change(author, watcher)
-        @author = author
+    def site_change_email(watcher)
         @watcher = watcher
         @url  = 'https://project-phenggeler.c9users.io/'
-        mail(to: @author.email, subject: @watcher.domain + 'has changed')
+        mail(to: @watcher.email, subject: @watcher.domain + 'has changed')
     end
 end

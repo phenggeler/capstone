@@ -1,18 +1,14 @@
 desc "This task is called by the Heroku scheduler add-on"
 require 'net/http'
+require 'rake'
 
 namespace :scheduler do
   desc "Ping our heroku dyno every 10, 60 or 3600 min"
-  task :start do
-    puts "Making the attempt to ping the dyno"
-
-    if ENV['URL']
-      puts "Sending ping"
-
-      uri = URI(ENV['URL'])
-      Net::HTTP.get_response(uri)
-
-      puts "success..."
+  task :start => :environment do
+    puts "Making the attempt to send email"
+    watchers = Watcher.all
+    watchers.each do |watcher|
+      watcher.current?(watcher)
     end
   end
 end
