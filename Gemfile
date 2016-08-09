@@ -45,6 +45,8 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor'      # helps heroku, but not related to postgres
+    gem 'listen', '~> 3.0.5'
+
 end
 
 group :development do
