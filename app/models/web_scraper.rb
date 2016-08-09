@@ -11,13 +11,33 @@ require 'net/http'
 
 #this is how we request the page we are going to scrape
 
-@domains = Domain.all
-puts @domains
-#Pry.start(binding)
+ 
+ 
+      url = URI('https://api.spyonweb.com/v1/adsense/'+'pub-6085526195231822'+'?access_token=QpAlekatYxmO')
+      parray = Array.new
+        doc1 = Nokogiri::HTML(open(url,:allow_redirections => :all))
+        str1 =  doc1.text
+        arr= str1.split(/"/)
+        arr.each do |st|
+            if (st.include? '.')
+ 
+                parray.push(st)
+                puts st
 
+            end
 
-#parse_page.css('.javascript') do |a|
-#    post_name = a.text
-#    ua_array.push(post_name)
-#end
+      end
+
+#    parse_page = Nokogiri::HTML(page.body)
+#          str1 =  doc1.text
+#      arr= str1.split(/"/)
+#    arr.each do |st|
+#          if (st.include? '.')
+#            if (st != str)
+#              darray.push(st)
+#            end
+#          end
+#      end
+#    end
+    
 

@@ -1,11 +1,11 @@
-<h1>New Domain</h1>
+<h1>New Watchers</h1>
 <p id="notice"><%= notice %></p>
 
 
-<%= form_for :domain, url: domains_path do |f| %>
+<%= form_for :watcher, url: watchers_path do |f| %>
   <p>
-    <%= f.label :name%><br>
-    <%= f.text_field :name %>
+    <%= f.label :domain%><br>
+    <%= f.text_field :domain %>
   </p>
  
   <p>
@@ -14,5 +14,6 @@
 </div>
 <h3>Menu</h3>
 <%= link_to 'See All Domains', controller: 'domains' %>
-<%= link_to 'Monitor Domain', new_watcher_path %>
+<%= link_to 'See All Monitors', controller: 'watchers' %>
+  
 <% end %>

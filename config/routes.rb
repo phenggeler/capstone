@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :domains
   resources :authors
-  
+  resources :watchers
   resources :author_sessions, only: [ :new, :create, :destroy ]
 
   get 'login'  => 'author_sessions#new'

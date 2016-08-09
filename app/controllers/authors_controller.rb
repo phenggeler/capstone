@@ -34,8 +34,11 @@ end
   def create
     @author = Author.new(author_params)
 
+
     respond_to do |format|
       if @author.save
+        #SendEmailJob.set(wait: 20.seconds).perform_later(@author)
+        UserMailer.welcome_email(@author).deliver
         format.html { redirect_to @author, notice: 'Author was successfully created.' }
         format.json { render :show, status: :created, location: @author }
       else

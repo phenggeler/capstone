@@ -58,28 +58,29 @@ class DomainsController < ApplicationController
     #this is where we transfer our http response into Nokogiri object
     parse_page = Nokogiri::HTML(page)
 
+    #json to hash
+    
+    #@myhash = JSON.parse(str)
     
     doc.css('script').each do |script|
-    match = nil
-    tmp = nil
-    txt = script.text
-      if (txt =~ /.UA-[0-9]+-[0-9]+(.*)/)
-        @match = txt.match(/UA-[0-9]+/)
-        tmp = @match
-      else
-        tmp = '---'
-      end
+      match = nil
+      tmp = nil
+      txt = script.text
+        if (txt =~ /.UA-[0-9]+-[0-9]+(.*)/)
+          @match = txt.match(/UA-[0-9]+/)
+          tmp = @match
+        else
+          tmp = '---'
+        end
     end
     
     source = open(uri,:allow_redirections => :all).read
     arr= source.split(/\n/)
     arr.each do |st|
-
-    if (st=~ /.-pub-(.*)/)
-        @matchpub = st.match(/pub-[1-9]*/)
-        #puts st.match(/pub-[1-9]*/)
+      if (st=~ /.-pub-(.*)/)
+          @matchpub = st.match(/pub-[1-9]*/)
+      end
     end
-end
 
     
     darray = Array.new
@@ -97,28 +98,61 @@ end
       end
     end
     
+    parray = Array.new
+    unless (@match.nil?)
+      url = URI('https://api.spyonweb.com/v1/adsense/'+@matchpub[0]+'?access_token=QpAlekatYxmO')
+      doc1 = Nokogiri::HTML(open(url,:allow_redirections => :all))
+      str1 =  doc1.text
+      arr= str1.split(/"/)
+      arr.each do |st|
+          if (st.include? '.')
+            if (st != str)
+              parray.push(st)
+            end
+          end
+      end
+    end
+    
+    
   
     if @matchpub
-      @domain = Domain.new(name: str, uacode: @match, pubid: @matchpub)
-    else
-      if @match
-      @domain = Domain.new(name: str, uacode: @match, pubid: '---')
-    else
-      @domain = Domain.new(name: str, uacode: '---', pubid: '---')
+        @domain = Domain.new(name: str, uacode: @match, pubid: @matchpub)
     end
-    
+    if @match
+        @domain = Domain.new(name: str, uacode: @match, pubid: '---')
+      else
+        @domain = Domain.new(name: str, uacode: '---', pubid: '---')
+    end
+
     darray.each do |dom|
-      if (dom.include? "www." )
-        dom.slice!("www.")
-        @domain1 = Domain.new(name: dom, uacode: @match)
-        @domain1.save
-      end
-      if (!dom.include? "www.")
-        @domain1 = Domain.new(name: dom, uacode: @match)
-        @domain1.save
+      unless (dom == str)
+        if (dom.include? "www." )
+          dom.slice!("www.")
+          unless (dom == str)
+            @domain1 = Domain.new(name: dom, uacode: @match)
+            @domain1.save
+          end
+        else
+          @domain1 = Domain.new(name: dom, uacode: @match)
+          @domain1.save
+        end
       end
     end
     
+    parray.each do |dom|
+      unless (dom == str)
+        if (dom.include? "www." )
+          dom.slice!("www.")
+          unless (dom == str)
+            @domain1 = Domain.new(name: dom, uacode: '---', pubid: @pubid)
+            @domain1.save
+          end
+        else
+          @domain1 = Domain.new(name: dom, uacode: '---', pubid: @pubid)
+          @domain1.save
+        end
+      end
+    end
     
     respond_to do |format|
       if @domain.save
@@ -166,4 +200,5 @@ end
     def domain_params
       params.require(:domain).permit(:name, :uacode)
     end
-end
+  
+

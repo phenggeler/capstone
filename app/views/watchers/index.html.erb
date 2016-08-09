@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<%= "Logged in as #{current_user.username}" %>
+<%= link_to 'New Watcher', new_watcher_path %> <br>
+<% if logged_in? %>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @watchers.each do |watcher| %>
+    <%# watcher.current?(#{current_user}) %>
+      <tr>
+        <td><%= link_to watcher.domain, watcher_path(watcher) %></td>
+        <td><%= link_to 'Edit', edit_watcher_path(watcher) %></td>
+        <td><%= link_to 'Destroy', watcher, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+<br>
+<h2>Please login for this data</h2>
+<br>
+
+<% end %>
+
+<br>
+
+

@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+
+<h2>Results for <%= @watcher.domain %></h2>
+
+<div class="divTable">
+<div class="divTableBody">
+<div class="divTableRow">
+<div class="divTableCell">Domain</div>
+<div class="divTableCell">Has Changed?</div>
+</div>
+<div class="divTableRow">
+<div class="divTableCell"><%= link_to @watcher.domain, watcher_path(@watcher), class:"link" %></div>
+        <%if @watcher.current? %>
+          <% str = "No" %>
+        <%else%>
+          <% str = "Yes" %>
+        <%end%>
+<div class="divTableCell"><%= str%></div>
+</div>
+</div>
+</div>
+
+<%= link_to 'Edit', edit_watcher_path(@watcher) %> |
+<%= link_to 'Back', watchers_path %>
