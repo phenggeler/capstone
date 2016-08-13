@@ -12,32 +12,36 @@ require 'net/http'
 #this is how we request the page we are going to scrape
 
  
- 
-      url = URI('https://api.spyonweb.com/v1/adsense/'+'pub-6085526195231822'+'?access_token=QpAlekatYxmO')
-      parray = Array.new
-        doc1 = Nokogiri::HTML(open(url,:allow_redirections => :all))
-        str1 =  doc1.text
-        arr= str1.split(/"/)
-        arr.each do |st|
-            if (st.include? '.')
- 
-                parray.push(st)
-                puts st
+         uri = URI('http://'+'markmonitor.com')
 
-            end
+        begin
+          page = HTTParty.get(uri)
+        rescue SocketError => e
+          #redirect_to new_domain_path, flash: {notice: "Cannot validate domain"} and return 
+        end
+        doc = Nokogiri::HTML(open(uri,:allow_redirections => :all))
+        #this is where we transfer our http response into Nokogiri object
+        parse_page = Nokogiri::HTML(page)
+        doc = Nokogiri::HTML(open(uri,:allow_redirections => :all))
 
-      end
-
-#    parse_page = Nokogiri::HTML(page.body)
-#          str1 =  doc1.text
-#      arr= str1.split(/"/)
-#    arr.each do |st|
-#          if (st.include? '.')
-#            if (st != str)
-#              darray.push(st)
-#            end
-#          end
-#      end
-#    end
-    
-
+        #puts parse_page.css('title').text
+        #puts parse_page.css('h2')
+        #puts parse_page.css('body').text
+        parse_page.xpath("//text()").text
+        parse_page.css('h2').each do |h2|
+            #puts h2.text
+        end
+        
+        parse_page.css('h3').each do |h3|
+            #puts h3.text
+        end
+        puts parse_page.css('p').text
+        parse_page.css("a").text
+        #puts links.length
+        links.each do |link|
+          if (!link['href'].to_s.include? 'markmonitor.com')
+            #puts link['href']
+          end
+        end
+        #puts doc.xpath('//meta[@name="Description"]/@content').text
+        #puts doc.xpath('//meta[@name="Keywords"]/@content').textrails 
