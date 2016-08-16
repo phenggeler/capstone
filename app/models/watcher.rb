@@ -5,7 +5,7 @@ class Watcher < ApplicationRecord
     begin
       page = HTTParty.get(uri)
     rescue SocketError => e
-      redirect_to new_domain_path, flash: {notice: "Cannot validate domain"} and return 
+      redirect_to new_domain_path, flash: {notice: "Cannot validate domain"} and return
     end
     doc = Nokogiri::HTML(open(uri,:allow_redirections => :all))
     #this is where we transfer our http response into Nokogiri object
@@ -29,7 +29,6 @@ class Watcher < ApplicationRecord
     keywords = doc.xpath('//meta[@name="Keywords"]/@content').text
     @watcher = Watcher.new(domain: str, source: doc.text, email: email, title: title, p: p, h1: h1, h2: h2, h3: h3, link: link, description: description, keywords: keywords)
     end
-    
     def current?(watcher)
         #pass emails
         @watcher = watcher
@@ -49,7 +48,7 @@ class Watcher < ApplicationRecord
               mssg = mssg +"Number of links has changed"
               bigchange = true
             end
-            if bigchange  
+            if bigchange
               UserMailer.site_change_email(@watcher, mssg).deliver
               @watcher = @tmp
             end
