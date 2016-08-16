@@ -14,7 +14,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-ruby '2.3.0'
+ruby '2.3.1'
 gem 'httparty'
 gem 'pry'
 gem 'sorcery'
@@ -45,7 +45,7 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor'      # helps heroku, but not related to postgres
-    gem 'listen', '~> 3.0.5'
+  gem 'listen', '~> 3.0.5'
 
 end
 

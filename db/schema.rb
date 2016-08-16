@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160809155700) do
+ActiveRecord::Schema.define(version: 20160816220309) do
 
   create_table "authors", force: :cascade do |t|
     t.string   "username"
@@ -48,9 +48,17 @@ ActiveRecord::Schema.define(version: 20160809155700) do
   create_table "watchers", force: :cascade do |t|
     t.string   "domain"
     t.text     "source"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "email"
+    t.string   "title"
+    t.string   "p"
+    t.string   "h1"
+    t.string   "h2"
+    t.string   "h3"
+    t.integer  "link"
+    t.string   "description"
+    t.string   "keywords"
   end
 
 end
