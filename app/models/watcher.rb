@@ -29,6 +29,7 @@ class Watcher < ApplicationRecord
     keywords = doc.xpath('//meta[@name="Keywords"]/@content').text
     @watcher = Watcher.new(domain: str, source: doc.text, email: email, title: title, p: p, h1: h1, h2: h2, h3: h3, link: link, description: description, keywords: keywords)
     end
+    
     def current?(watcher)
         #pass emails
         @watcher = watcher
