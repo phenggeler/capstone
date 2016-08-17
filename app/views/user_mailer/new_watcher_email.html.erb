@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    Hi, <%= @watcher.email %>
+    <p>
+        You have successfully created site monitoring for <%= @watcher.domain%>.
+    </p>
+  </body>
+  <table style="width:100%">
+  <tr>
+    <th>Domain</th>
+    <th>Title</th> 
+    <th>Words in Paragraphs</th>
+    <th>H1 Headers</th>
+    <th>H2 Headers</th>
+    <th>H3 Headers</th>
+    <th># Links on Page</th>
+    <th>Description</th>
+    <th>Keywords</th>
+  </tr>
+  <tr>
+    <td><%= @watcher.domain %></td>
+    <td><%= @watcher.title %></td>
+    <td><%= @watcher.p.length %></td>
+    <td><%= @watcher.h1.length %></td>
+    <td><%= @watcher.h2.length %></td>
+    <td><%= @watcher.h3.length %></td>
+    <td><%= @watcher.link %></td>
+    <td><%= @watcher.description %></td>
+    <td><%= @watcher.keywords %></td>
+  </tr>
+</table>
+  
+</html>

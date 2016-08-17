@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160816220309) do
+ActiveRecord::Schema.define(version: 20160817042120) do
 
   create_table "authors", force: :cascade do |t|
     t.string   "username"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20160816220309) do
     t.integer  "link"
     t.string   "description"
     t.string   "keywords"
+    t.string   "linktext"
   end
 
 end

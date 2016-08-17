@@ -56,6 +56,7 @@ class WatchersController < ApplicationController
 
     respond_to do |format|
       if @watcher.save
+        UserMailer.new_watcher_email(@watcher).deliver
         format.html { redirect_to @watcher, notice: 'watcher was successfully created.' }
         format.json { render :show, status: :created, location: @watcher }
       else

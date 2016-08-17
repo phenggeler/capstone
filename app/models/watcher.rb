@@ -11,23 +11,15 @@ class Watcher < ApplicationRecord
     #this is where we transfer our http response into Nokogiri object
     parse_page = Nokogiri::HTML(page)
     title = parse_page.css('title').text
-    h1 = ''
-    h2 = ''
-    h3 = ''
-    parse_page.css('h1').each do |h1t|
-      h1 = h1+', '+h1t
-    end
-    parse_page.css('h2').each do |h2t|
-      h2 = h2+', '+h2t
-    end
-    parse_page.css('h3').each do |h3t|
-      h3 = h3+', '+h3t
-    end
+    h1 = parse_page.css('h1').text
+    h2 = parse_page.css('h2').text
+    h3 = parse_page.css('h3').text
     p = parse_page.css('p').text
     link = parse_page.css("a").length
+    linktext = parse_page.css("a").text
     description = doc.xpath('//meta[@name="Description"]/@content').text
     keywords = doc.xpath('//meta[@name="Keywords"]/@content').text
-    @watcher = Watcher.new(domain: str, source: doc.text, email: email, title: title, p: p, h1: h1, h2: h2, h3: h3, link: link, description: description, keywords: keywords)
+    @watcher = Watcher.new(domain: str, source: doc.text, email: email, title: title, p: p, h1: h1, h2: h2, h3: h3, link: link, linktext: linktext, description: description, keywords: keywords)
     end
 
     def current?(watcher)
@@ -36,12 +28,6 @@ class Watcher < ApplicationRecord
         @tmp = Watcher.makeObj(@watcher.domain, 'fake@fake.com')
         mssg = ''
         bigchange = false
-#        puts @watcher.p
-#        puts @tmp.p
-#        puts @watcher.title
-#        puts @tmp.title
-#        puts @watcher.link
-#        puts @tmp.link
         if (!@watcher.source.eql? @tmp.source)
             if (!@watcher.p.eql? @tmp.p)
               mssg = mssg + "P Text Has Changed"
@@ -55,7 +41,10 @@ class Watcher < ApplicationRecord
               mssg = mssg +"Number of links has changed"
               bigchange = true
             end
-              puts mssg
+            if (!@watcher.linktext.eql? @tmp.linktext)
+              mssg = mssg + "Some wording in links has changed"
+              bigchange = true
+            end
               UserMailer.site_change_email(@watcher, mssg).deliver
               @watcher = @tmp
             @tmp.destroy

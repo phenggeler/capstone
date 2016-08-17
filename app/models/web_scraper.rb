@@ -12,7 +12,7 @@ require 'net/http'
 #this is how we request the page we are going to scrape
 
 
-         uri = URI('http://'+'markmonitor.com')
+         uri = URI('http://'+'cnn.com')
 
         begin
           page = HTTParty.get(uri)
@@ -36,7 +36,7 @@ require 'net/http'
             #puts h3.text
         end
         #puts parse_page.css('p').text
-        parse_page.css("a").text
+        puts parse_page.css("a").text
         #puts links.length
 #        links.each do |link|
 #          if (!link['href'].to_s.include? 'markmonitor.com')

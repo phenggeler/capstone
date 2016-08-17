@@ -7,6 +7,12 @@ class UserMailer < ApplicationMailer
         @url  = 'https://project-phenggeler.c9users.io/'
         mail(to: @author.email, subject: 'Welcome to My Awesome Site')
     end
+    
+    def new_watcher_email(watcher)
+        @watcher = watcher
+        @url  = 'https://project-phenggeler.c9users.io/'
+        mail(to: @watcher.email, subject: 'You have set up a watcher alert for '+@watcher.domain)
+    end
 
     def site_change_email(watcher, mssg)
         @watcher = watcher
