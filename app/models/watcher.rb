@@ -36,12 +36,12 @@ class Watcher < ApplicationRecord
         @tmp = Watcher.makeObj(@watcher.domain, 'fake@fake.com')
         mssg = ''
         bigchange = false
-        puts @watcher.p
-        puts @tmp.p
-        puts @watcher.title
-        puts @tmp.title
-        puts @watcher.link
-        puts @tmp.link
+#        puts @watcher.p
+#        puts @tmp.p
+#        puts @watcher.title
+#        puts @tmp.title
+#        puts @watcher.link
+#        puts @tmp.link
         if (!@watcher.source.eql? @tmp.source)
             if (!@watcher.p.eql? @tmp.p)
               mssg = mssg + "P Text Has Changed"
@@ -55,11 +55,9 @@ class Watcher < ApplicationRecord
               mssg = mssg +"Number of links has changed"
               bigchange = true
             end
-            if !bigchange
               puts mssg
               UserMailer.site_change_email(@watcher, mssg).deliver
-              #@watcher = @tmp
-            end
+              @watcher = @tmp
             @tmp.destroy
         end
     end
