@@ -55,14 +55,6 @@
 </div>
 
 <script>
-$(".add").click(function() {
-    $("form > p:first-child").clone(true).insertBefore("form > p:last-child");
-    return false;
-});
-
-$(".remove").click(function() {
-    $(this).parent().remove();
-});
 
 function nameworkFunction(name, work) {
 	var names = name.split(" ");
@@ -71,13 +63,13 @@ function nameworkFunction(name, work) {
 	for (i =1; i<names.length; i++){
 		site = site+"%20"+names[i];
 	}
-	site = site+"/users-named/intersect/str";
+	site = site+"/users-named/intersect/str/";
 	var works = work.split(" ");
 	site = site+works[0];
-	or (i =1; i<works.length; i++){
+	for (i =1; i<works.length; i++){
 		site = site+"%20"+works[i];
 	}
-	site = site+"/users-named/intersect";
+	site = site+"/pages-named/employees/present/intersect";
 	window.open(site,'_blank');
 }
 
