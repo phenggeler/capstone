@@ -1,0 +1,153 @@
+<h1>Facebook</h1>
+<div>
+<form onsubmit="nameFunction(document.getElementById('firstname').value)">
+  Name:<br>
+  <input type="text" name="firstname" id="firstname"><br>
+  <input type="submit" value="Search">
+</form>
+</div>
+
+<div>
+<form onsubmit="workFunction(document.getElementById('employer').value)">
+  Works at:<br>
+  <input type="text" name="employer" id="employer"><br>
+  <input type="submit" value="Search">
+</form>
+</div>
+
+<div>
+<form onsubmit="formerworkFunction(document.getElementById('femployer').value)">
+  Worked at:<br>
+  <input type="text" name="femployer" id="femployer"><br>
+  <input type="submit" value="Search">
+</form>
+</div>
+
+<div>
+<form onsubmit="livesFunction(document.getElementById('town').value)">
+  Currently Lives:<br>
+  <input type="text" name="town" id="town"><br>
+  <input type="submit" value="Search">
+</form>
+</div>
+
+<div>
+<form onsubmit="flivesFunction(document.getElementById('ftown').value)">
+  Previously Lived:<br>
+  <input type="text" name="ftown" id="ftown"><br>
+  <input type="submit" value="Search">
+</form>
+</div>
+
+<div>
+<form onsubmit="schoolFunction(document.getElementById('school').value)">
+  School Attended:<br>
+  <input type="text" name="school" id="school"><br>
+  <input type="submit" value="Search">
+</form>
+</div>
+
+<div>
+<form onsubmit="nameworkFunction(document.getElementById('name1').value, document.getElementById('employer1').value)">
+  Name: <input type="text" name="name1" id="name1"> and Work: <input type="text" name="employer1" id="employer1"><br>
+  <input type="submit" value="Search">
+</form>
+</div>
+
+<script>
+$(".add").click(function() {
+    $("form > p:first-child").clone(true).insertBefore("form > p:last-child");
+    return false;
+});
+
+$(".remove").click(function() {
+    $(this).parent().remove();
+});
+
+function nameworkFunction(name, work) {
+	var names = name.split(" ");
+    var site = "https://www.facebook.com/search/str/";
+	site = site+names[0];
+	for (i =1; i<names.length; i++){
+		site = site+"%20"+names[i];
+	}
+	site = site+"/users-named/intersect/str";
+	var works = work.split(" ");
+	site = site+works[0];
+	or (i =1; i<works.length; i++){
+		site = site+"%20"+works[i];
+	}
+	site = site+"/users-named/intersect";
+	window.open(site,'_blank');
+}
+
+function nameFunction(firstname) {
+	var names = firstname.split(" ");
+    var site = "https://www.facebook.com/search/str/";
+	site = site+names[0];
+	for (i =1; i<names.length; i++){
+		site = site+"%20"+names[i];
+	}
+	site = site+"/users-named/intersect";
+	window.open(site,'_blank');
+}
+
+function workFunction(employer) {
+	var names = employer.split(" ");
+    var site = "https://www.facebook.com/search/str/";
+	site = site+names[0];
+	for (i =1; i<names.length; i++){
+		site = site+"%20"+names[i];
+	}
+	site = site+"/pages-named/employees/present/intersect";
+	window.open(site,'_blank');
+}
+
+function formerworkFunction(employer) {
+	var names = employer.split(" ");
+    var site = "https://www.facebook.com/search/str/";
+	site = site+names[0];
+	for (i =1; i<names.length; i++){
+		site = site+"%20"+names[i];
+	}
+	site = site+"/pages-named/employees/past/intersect";
+	window.open(site,'_blank');
+}
+
+function livesFunction(employer) {
+	var names = employer.split(" ");
+    var site = "https://www.facebook.com/search/str/";
+	site = site+names[0];
+	for (i =1; i<names.length; i++){
+		site = site+"%20"+names[i];
+	}
+	site = site+"/pages-named/residents/present/intersect";
+	window.open(site,'_blank');
+}
+
+function flivesFunction(employer) {
+	var names = employer.split(" ");
+    var site = "https://www.facebook.com/search/str/";
+	site = site+names[0];
+	for (i =1; i<names.length; i++){
+		site = site+"%20"+names[i];
+	}
+	site = site+"/pages-named/residents/past/intersect";
+	window.open(site,'_blank');
+}
+
+function schoolFunction(employer) {
+	var names = employer.split(" ");
+    var site = "https://www.facebook.com/search/str/";
+	site = site+names[0];
+	for (i =1; i<names.length; i++){
+		site = site+"%20"+names[i];
+	}
+	site = site+"/pages-named/students/intersect";
+	window.open(site,'_blank');
+}
+</script>
+
+<h3>Menu</h3>
+<%= link_to 'See All Domains', controller: 'domains' %>
+<%= link_to 'Monitor Domain', new_watcher_path %>

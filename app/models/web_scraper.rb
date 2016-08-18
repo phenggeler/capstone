@@ -31,7 +31,7 @@ require 'net/http'
         parse_page.css('h2').each do |h2|
             #puts h2.text
         end
-
+        puts parse_page.css('.content')
         parse_page.css('h3').each do |h3|
             #puts h3.text
         end

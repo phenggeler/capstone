@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :domains
+  resources :domains do 
+    collection do
+        get 'facebook'
+    end
+  end
+  
   resources :authors
   resources :watchers
   resources :author_sessions, only: [ :new, :create, :destroy ]
