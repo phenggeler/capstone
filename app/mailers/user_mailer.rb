@@ -5,7 +5,7 @@ class UserMailer < ApplicationMailer
     def welcome_email(author)
         @author = author
         @url  = 'https://project-phenggeler.c9users.io/'
-        mail(to: @author.email, subject: 'Welcome to My Awesome Site')
+        mail(to: @author.email, subject: 'Welcome Email')
     end
     
     def new_watcher_email(watcher)
