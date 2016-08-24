@@ -3,7 +3,7 @@
 <div>
 <form onsubmit="tmpFunction(document.getElementById('firstname').value, document.getElementById('employer').value,
 									document.getElementById('femployer').value,document.getElementById('town').value, document.getElementById('ftown').value,
-									 document.getElementById('school').value)">
+									 document.getElementById('school').value, document.getElementById('liked').value)">
   Name:<br>
   <input type="text" name="firstname" id="firstname"><br>
   Currently Works:<br>
@@ -16,13 +16,15 @@
 	<input type="text" name="ftown" id="ftown"><br>
 	School:<br>
 	<input type="text" name="school" id="school"><br>
+	Has Liked:<br>
+	<input type="text" name="liked" id="liked"><br>
   <input type="submit" value="Search">
 </form>
 </div>
 
 <script>
 
-function tmpFunction(name, work, fwork, town, ftown, school) {
+function tmpFunction(name, work, fwork, town, ftown, school, liked) {
   var site = "https://www.facebook.com/search/str/";
   var x = 0;
   if (name && name.length > 0){
@@ -96,6 +98,19 @@ function tmpFunction(name, work, fwork, town, ftown, school) {
   		}
 		for (i =1; i<schools.length; i++){
 			site = site+"%20"+schools[i];
+		}
+		site = site+"/pages-named/students/intersect";
+		x=1;
+  }
+    if (liked && liked.length > 0){
+		var likeds = liked.split(" ");
+		 if(!x){
+  			site = site +likeds[0];
+  		}else{
+  			site = site+"/str/"+likeds[0];
+  		}
+		for (i =1; i<likeds.length; i++){
+			site = site+"%20"+likeds[i];
 		}
 		site = site+"/pages-named/students/intersect";
 		x=1;
