@@ -37,25 +37,27 @@ class Watcher < ApplicationRecord
         if (!@watcher.source.eql? @tmp.source)
             if (!@watcher.p.eql? @tmp.p)
               mssg = mssg + "P Text Has Changed"
+              @watcher.p = @tmp.p
               bigchange = true
             end
             if (!@watcher.title.eql? @tmp.title)
               mssg = mssg + "Title Has Changed"
+              @watcher.title = @tmp.title
               bigchange = true
             end
             if (!@watcher.link.eql? @tmp.link)
               mssg = mssg +"Number of links has changed"
+              @watcher.link = @tmp.link
               bigchange = true
             end
             if (!@watcher.linktext.eql? @tmp.linktext)
               mssg = mssg + "Some wording in links has changed"
+              @watcher.linktext = @tmp.linktext
               bigchange = true
             end
             if (bigchange)
               UserMailer.site_change_email(@watcher, mssg).deliver
-              @tmp.email = @watcher.email
-              @watcher = @tmp
-              @watcher.update(watcher_params)
+              @watcher.save
             end
             @tmp.destroy
         end
