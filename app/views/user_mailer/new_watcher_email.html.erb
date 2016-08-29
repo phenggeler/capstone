@@ -6,10 +6,10 @@
   <body>
     Hi, <%= @watcher.email %>
     <p>
-        You have successfully created site monitoring for <%= @watcher.domain%>.
+        You have successfully created site monitoring for <%= @watcher.domain%>. This domain is currently <%= @watcher.use %>.
     </p>
   </body>
-  <table style="width:100%">
+  <table style="width:100%">-
   <tr>
     <th>Domain</th>
     <th>Title</th> 
@@ -24,10 +24,10 @@
   <tr>
     <td><%= @watcher.domain %></td>
     <td><%= @watcher.title %></td>
-    <td><%= @watcher.p.length %></td>
-    <td><%= @watcher.h1.length %></td>
-    <td><%= @watcher.h2.length %></td>
-    <td><%= @watcher.h3.length %></td>
+    <td><%= @watcher.p.split(" ").length %></td>
+    <td><%= @watcher.h1.split(" ").length %></td>
+    <td><%= @watcher.h2.split(" ").length %></td>
+    <td><%= @watcher.h3.split(" ").length %></td>
     <td><%= @watcher.link %></td>
     <td><%= @watcher.description %></td>
     <td><%= @watcher.keywords %></td>

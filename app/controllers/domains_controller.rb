@@ -99,7 +99,7 @@ class DomainsController < ApplicationController
     end
     
     parray = Array.new
-    unless (@match.nil?)
+    unless (@matchpub.nil?)
       url = URI('https://api.spyonweb.com/v1/adsense/'+@matchpub[0]+'?access_token=QpAlekatYxmO')
       doc1 = Nokogiri::HTML(open(url,:allow_redirections => :all))
       str1 =  doc1.text

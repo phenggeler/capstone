@@ -40,18 +40,7 @@ class WatchersController < ApplicationController
 
     str = params[:watcher][:domain]
     email = params[:watcher][:email]
-    uri = URI('http://'+str)
-    begin
-      page = HTTParty.get(uri)
-    rescue SocketError => e
-      redirect_to new_domain_path, flash: {notice: "Cannot validate domain"} and return
-    end
-    doc = Nokogiri::HTML(open(uri,:allow_redirections => :all))
-    #this is where we transfer our http response into Nokogiri object
-    parse_page = Nokogiri::HTML(page)
 
-
-    #@watcher = Watcher.new(domain: str, source: doc.text, email: email)
     @watcher = Watcher.makeObj(str, email)
 
     respond_to do |format|
