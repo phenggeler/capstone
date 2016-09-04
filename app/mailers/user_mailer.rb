@@ -8,6 +8,21 @@ class UserMailer < ApplicationMailer
         mail(to: @author.email, subject: 'Welcome Email')
     end
     
+    def new_user_email(signup)
+        @signup = signup
+        mail(to: 'peter.john.henggeler@gmail.com', subject: @signup.username + " has requested access to site")
+    end
+    
+    def approval_user_email(author)
+        @author = author
+        mail(to: @author.email, subject: 'Your Account Has Been Approved')
+    end
+    
+    def suspended_user_email(author)
+       @author = author
+        mail(to: @author.email, subject: 'Your Account Has Been Suspended')
+    end
+    
     def new_watcher_email(watcher)
         @watcher = watcher
         @url  = 'https://project-phenggeler.c9users.io/'
@@ -21,4 +36,6 @@ class UserMailer < ApplicationMailer
         @url  = 'https://project-phenggeler.c9users.io/'
         mail(to: @watcher.email, subject: @watcher.domain + ' has changed')
     end
+    
+    
 end

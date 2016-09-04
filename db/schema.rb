@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160824154738) do
+ActiveRecord::Schema.define(version: 20160903211224) do
 
   create_table "authors", force: :cascade do |t|
     t.string   "username"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20160824154738) do
     t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "verified"
     t.index ["email"], name: "index_authors_on_email", unique: true
   end
 
@@ -43,6 +44,15 @@ ActiveRecord::Schema.define(version: 20160824154738) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "pubid"
+  end
+
+  create_table "signups", force: :cascade do |t|
+    t.string   "username"
+    t.string   "email"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.string   "password"
+    t.string   "password_confirmation"
   end
 
   create_table "watchers", force: :cascade do |t|

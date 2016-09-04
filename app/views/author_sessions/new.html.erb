@@ -1,19 +1,41 @@
-<h1>Login</h1>
 
-<%= form_tag author_sessions_path, method: :post do %>
-  <div class="field">
-    <%= label_tag :email %>
-    <%= text_field_tag :email %>
+
+<% if !logged_in? %>
+<div class="login-page">
+  <div class="form">
+  <%= form_tag author_sessions_path, method: :post do %>
+  <div class = "login-form">
+    <div class="field">
+      <%= label_tag :email %>
+      <%= text_field_tag :email%>
     <br/>
-  </div>
-  <div class="field">
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
+    </div>
+    <div class="field">
+      <%= label_tag :password %>
+      <%= password_field_tag :password %>
     <br/>
+    </div>
+    <div class="actions">
+      <button>login</button>
+    </div>
+  <% end %>
+  <div>
+    <br>
+  <%= link_to 'Create Account', new_author_path %>
   </div>
-  <div class="actions">
-    <%= submit_tag "Login" %>
   </div>
+  </div>
+</div>
+<% else %>
+<br>
+<td><% controller.redirect_to domains_path %></td>
+<br>
 <% end %>
 
-<%= link_to 'Back', domains_path %>
+<script>
+$('.message a').click(function(){
+   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+});
+</script>
+
+<footer>Copyright © A Wide Network</footer>

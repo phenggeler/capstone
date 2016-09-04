@@ -2,7 +2,6 @@
 
 
 <%= link_to 'New Domain', new_domain_path %> <br>
-<%= link_to 'Google', 'https://www.google.com/', :target => "_blank" %>
 <% if logged_in? %>
 <table>
   <thead>
@@ -28,9 +27,7 @@
   </tbody>
 </table>
 <% else %>
-<br>
-<h2>Please login for this data</h2>
-<br>
+<% controller.redirect_to new_author_session_path, notice: 'Please login to view that data' %>
 <% end %>
 
 <br>

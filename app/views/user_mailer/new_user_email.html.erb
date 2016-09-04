@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello, Site Admin</h1>
+    <p>
+      <%= @signup.username %> has requested permission to join the site. 
+      Their preferred email is: <%= @signup.email %>.<br>
+      Their preferred username is: <%= @signup.username %>.<br>
+    </p>
+    <p>Please let this person know if they have approval to join the site.</p>
+  </body>
+</html>
