@@ -60,18 +60,19 @@
         null,
         null,
         1,
-        0,
+        1,
+        1,
+        1,
+        null,
         0,
         0,
         null,
-        0,
-        null,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
         null,
         0,
         0,
@@ -116,7 +117,7 @@
         null,
         null,
         1,
-        0,
+        1,
         null,
         null
       ],
@@ -148,7 +149,7 @@
         null,
         null,
         null,
-        1,
+        0,
         0,
         0,
         null,
@@ -361,19 +362,6 @@
         null,
         null
       ],
-      "/home/ubuntu/workspace/app/models/domain.rb": [
-        1,
-        1,
-        1,
-        1,
-        null
-      ],
-      "/home/ubuntu/workspace/app/models/application_record.rb": [
-        1,
-        1,
-        null,
-        null
-      ],
       "/home/ubuntu/workspace/app/models/author.rb": [
         1,
         1,
@@ -389,20 +377,33 @@
         null,
         null
       ],
+      "/home/ubuntu/workspace/app/models/application_record.rb": [
+        1,
+        1,
+        null,
+        null
+      ],
+      "/home/ubuntu/workspace/app/models/domain.rb": [
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
       "/home/ubuntu/workspace/app/mailers/user_mailer.rb": [
         1,
         1,
         null,
         null,
         1,
-        1,
-        1,
-        1,
+        4,
+        4,
+        4,
         null,
         null,
         1,
-        0,
-        0,
+        1,
+        1,
         null,
         null,
         1,
@@ -517,14 +518,6 @@
         0,
         0,
         0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "/home/ubuntu/workspace/app/models/signup.rb": [
         0,
         0,
         0,
@@ -769,6 +762,6 @@
         0
       ]
     },
-    "timestamp": 1473032624
+    "timestamp": 1473267505
   }
 }

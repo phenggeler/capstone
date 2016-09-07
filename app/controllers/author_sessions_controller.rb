@@ -16,11 +16,10 @@ class AuthorSessionsController < ApplicationController
         render action: :new
       end
     end
-
+  end
 
   def destroy
     logout
     redirect_to(new_author_session_path, notice: 'Logged out!')
   end
-end
-end
+  end

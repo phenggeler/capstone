@@ -70,12 +70,37 @@ RSpec.describe AuthorsController, type: :controller do
         expect(@author.verified == false)
     end
     
+    it "redirects to author show page" do
+        #@author = Author.create(username: 'kyle',email:'peter.john.henggeler@gmail.com', password: 'password', password_confirmation:'password')
+        post :create, author: {username: 'kyle',email:'peter.john.henggeler@gmail.com', password: 'password', password_confirmation:'password'}
+        expect(response).to redirect_to author_path(Author.last.id)
+    end
     
-  let(:mail) {UserMailer.welcome_email(@author).deliver_now }
+    let(:author) {Author.create(username:'kyle', email:'peter.john.henggeler@gmail.com', password: 'password', password_confirmation:'password', verified: false)}
+    let(:mail) {UserMailer.welcome_email(author).deliver_now }
 
-  it 'renders the receiver email' do
-    @author = Author.create(username: 'kyle',email:'peter.john.henggeler@gmail.com', password: 'password', password_confirmation:'password')
-         expect(mail.to).to eq([@author.email])
-  end
-  end
+   it 'renders the receiver email' do
+        #@author = Author.create(username: 'kyle',email:'peter.john.henggeler@gmail.com', password: 'password', password_confirmation:'password')
+        expect(mail.to).to eq([author.email])
+    end
+  
+  it 'renders the subject' do
+        #@author = Author.create(username: 'kyle',email:'peter.john.henggeler@gmail.com', password: 'password', password_confirmation:'password')
+        expect(mail.subject).to eq('Welcome Email')
+    end
+
+    it 'renders the sender email' do
+        #@author = Author.create(username: 'kyle',email:'peter.john.henggeler@gmail.com', password: 'password', password_confirmation:'password')
+        expect(mail.from).eql?('siteupdatealerts@gmail.com')
+    end
+
+    let(:mail2) {UserMailer.new_user_email(author).deliver_now }
+    
+ 
+    it 'renders the subject' do
+        #@author = Author.create(username: 'kyle',email:'peter.john.henggeler@gmail.com', password: 'password', password_confirmation:'password')
+        expect(mail2.subject).to eq(author.username + " has requested access to site")
+    end
+
+end
 end
