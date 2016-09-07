@@ -80,11 +80,55 @@ input[type=text] {
     
 }
 
+ol {
+  color: #ccc;
+  list-style-type: none;
+}
+ 
+ol li {
+  position: relative;
+  font: bold italic 45px/1.5 Helvetica, Verdana, sans-serif;
+  margin-bottom: 20px;
+}
+ 
+li p {
+  font: 12px/1.5 Helvetica, sans-serif;
+  padding-left: 60px;
+  color: #555;
+}
+ 
+span {
+  position: absolute;
+  color: #E78200;
+}
+
 .login-page {
   width: 360px;
   padding: 8% 0 0;
   margin: auto;
 }
+
+#wrapper {
+     width: 1005px;
+     margin: 0 auto;
+}
+
+#leftcolumn, #rightcolumn {
+    border: 1px solid white;
+    float: left;
+    min-height: 450px;
+}
+#leftcolumn {
+     width: 500px;
+     background-color: white;
+
+}
+
+#rightcolumn {
+     width: 500px;
+     background-color: white;
+}
+
 .form {
   position: relative;
   z-index: 1;
@@ -121,7 +165,7 @@ input[type=text] {
   cursor: pointer;
 }
 .form button:hover,.form button:active,.form button:focus {
-  background: #43A047;
+  background: #E78200;
 }
 .form .message {
   margin: 15px 0 0;
@@ -159,12 +203,13 @@ input[type=text] {
 }
 
 header, footer {
-    height:25px;
+    height:57px;
     padding: 1em;
     color: white;
-    background-color: #4CAF50;
+    background-color: white;
     clear: left;
     text-align: left;
+
 }
 
 .container .info span {

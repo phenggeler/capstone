@@ -37,12 +37,13 @@ end
       @author.verified = true
     else
       @author.verified = false
+      UserMailer.new_user_email(@author).deliver
     end
     respond_to do |format|
       if @author.save
         UserMailer.welcome_email(@author).deliver
-        flash[:notice] = "Your request is being process. You will be contacted once an account has been created for you. We will be in touch`"
-        format.html { redirect_to @author, notice: 'Author was successfully created.' }
+        flash[:notice] = "You will be contacted once your account has been approve"
+        format.html { redirect_to @author }
         format.json { render :show, status: :created, location: @author }
       else
         format.html { render :new }

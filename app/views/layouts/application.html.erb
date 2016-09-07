@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html>
   <header>
-   <div alighn = "left">
-      <%= image_tag("logo2.png", :alt => "rss feed") %>
+   <div alighn = "left", padding>
+      <%= image_tag("logo2.png", :alt => "rss feed",:size => '150x150') %>
   </div>
   </header>
   <head>
 <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <style>
     
-    ul {
+    
+ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #4CAF50;
+    margin-bottom:85px;
+    margin-left: 4.5cm;
+
 }
 
 li {
@@ -30,29 +34,29 @@ li a {
 }
 
 li a:hover {
-    background-color: #111;
+    background-color: #E78200;
 }
-      header {
-        font-family: 'Lato', serif;
-        font-size: 0px;
-      }
+header {
+    font-family: 'Lato', serif;
+    font-size: 0px;
+}
     </style>
     <title>Work</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+</head>
 
-  <body>
-    <ul>
+<body>
+<ul>
   <li><a class="active" href="#home">Home</a></li>
   <li><a href="#news">News</a></li>
   <li><a href="#contact">Contact</a></li>
   <li><a href="#about">About</a></li>
 </ul>
-
-    <body>
+</body>
+<body>
 
 <% if flash[:notice] %>
  <div class = "flash_success"><%= flash[:notice]%>

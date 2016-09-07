@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :signups
+  #resources :signups
   resources :authors
   resources :watchers
   resources :author_sessions, only: [ :new, :create, :destroy ]

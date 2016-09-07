@@ -1,6 +1,17 @@
 
 
 <% if !logged_in? %>
+<div id="wrapper">
+<div id="leftcolumn">
+<div>
+  <ol>
+    <li><span>1.</span><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent euismod ultrices ante, ac laoreet nulla vestibulum adipiscing. Nam quis justo in augue auctor imperdiet. Curabitur aliquet orci sit amet est posuere consectetur. Fusce nec leo ut massa viverra venenatis. Nam accumsan libero a elit aliquet quis ullamcorper arcu tincidunt. Praesent purus turpis, consectetur quis congue vel, pulvinar at lorem. Vivamus varius condimentum dolor, quis ultricies ipsum porta quis. </p></li>
+    <li><span>2.</span><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent euismod ultrices ante, ac laoreet nulla vestibulum adipiscing. Nam quis justo in augue auctor imperdiet. Curabitur aliquet orci sit amet est posuere consectetur.  </p></li>
+    <li><span>3.</span><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent euismod ultrices ante, ac laoreet nulla vestibulum adipiscing. Nam quis justo in augue auctor imperdiet. Curabitur aliquet orci sit amet est posuere consectetur.  </p></li>
+  </ol> 
+</div>
+</div>
+<div id="rightcolumn">
 <div class="login-page">
   <div class="form">
   <%= form_tag author_sessions_path, method: :post do %>
@@ -25,10 +36,12 @@
   </div>
   </div>
   </div>
+  </div>
+  </div>
 </div>
 <% else %>
 <br>
-<td><% controller.redirect_to domains_path %></td>
+<td><% controller.redirect_to authors_path %></td>
 <br>
 <% end %>
 
@@ -38,4 +51,4 @@ $('.message a').click(function(){
 });
 </script>
 
-<footer>Copyright © A Wide Network</footer>
+<footer>Copyright © Meta Scrape</footer>
