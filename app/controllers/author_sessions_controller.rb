@@ -4,10 +4,10 @@ class AuthorSessionsController < ApplicationController
   end
 
   def create
-    if (!Author.verified?(params[:email]))
-        flash[:alert] = 'You are Not Verified Yet'
-        redirect_to(new_author_session_path)
-    else
+#    if (!Author.verified?(params[:email]))
+#        flash[:alert] = 'You are Not Verified Yet'
+#        redirect_to(new_author_session_path)
+#    else
       if login(params[:email], params[:password])
         flash[:notice] = 'Logged In Successfully'
         redirect_back_or_to(authors_path)
