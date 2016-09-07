@@ -16,7 +16,7 @@ class AuthorSessionsController < ApplicationController
         render action: :new
       end
     end
-  end
+
 
   def destroy
     logout
