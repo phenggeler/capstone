@@ -149,10 +149,9 @@
         null,
         null,
         null,
+        1,
         0,
         0,
-        0,
-        null,
         null,
         null
       ],
@@ -369,6 +368,7 @@
         1,
         1,
         1,
+        1,
         null,
         1,
         0,
@@ -384,6 +384,7 @@
         null
       ],
       "/home/ubuntu/workspace/app/models/domain.rb": [
+        1,
         1,
         1,
         1,
@@ -526,6 +527,7 @@
         0
       ],
       "/home/ubuntu/workspace/app/models/web_scraper.rb": [
+        0,
         0,
         0,
         0,
@@ -762,6 +764,6 @@
         0
       ]
     },
-    "timestamp": 1473267505
+    "timestamp": 1473899684
   }
 }

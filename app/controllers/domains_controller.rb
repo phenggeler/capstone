@@ -116,12 +116,12 @@ class DomainsController < ApplicationController
     
   
     if @matchpub
-        @domain = Domain.new(name: str, uacode: @match, pubid: @matchpub)
+        @domain = Domain.new(name: str, uacode: @match, pubid: @matchpub, author: current_user)
     end
     if @match
-        @domain = Domain.new(name: str, uacode: @match, pubid: '---')
+        @domain = Domain.new(name: str, uacode: @match, pubid: '---', author: current_user)
       else
-        @domain = Domain.new(name: str, uacode: '---', pubid: '---')
+        @domain = Domain.new(name: str, uacode: '---', pubid: '---', author: current_user)
     end
 
     darray.each do |dom|
