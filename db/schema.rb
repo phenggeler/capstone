@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160913050342) do
+ActiveRecord::Schema.define(version: 20160919031103) do
 
   create_table "authors", force: :cascade do |t|
     t.string   "username"
@@ -48,15 +48,6 @@ ActiveRecord::Schema.define(version: 20160913050342) do
     t.index ["author_id"], name: "index_domains_on_author_id"
   end
 
-  create_table "signups", force: :cascade do |t|
-    t.string   "username"
-    t.string   "email"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.string   "password"
-    t.string   "password_confirmation"
-  end
-
   create_table "watchers", force: :cascade do |t|
     t.string   "domain"
     t.text     "source"
@@ -73,6 +64,9 @@ ActiveRecord::Schema.define(version: 20160913050342) do
     t.string   "keywords"
     t.string   "linktext"
     t.string   "use"
+    t.integer  "author_id"
+    t.string   "url"
+    t.index ["author_id"], name: "index_watchers_on_author_id"
   end
 
 end

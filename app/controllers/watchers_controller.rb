@@ -42,6 +42,7 @@ class WatchersController < ApplicationController
     email = params[:watcher][:email]
 
     @watcher = Watcher.makeObj(str, email)
+    @watcher.author = current_user
 
     respond_to do |format|
       if @watcher.save

@@ -8,7 +8,9 @@ namespace :scheduler do
     puts "Making the attempt to send email"
     watchers = Watcher.all
     watchers.each do |watcher|
-      watcher.current?(watcher)
+      if (watcher.worthScanning?(watcher))
+        watcher.current?(watcher)
+      end
     end
   end
 end

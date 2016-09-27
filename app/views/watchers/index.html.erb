@@ -6,17 +6,24 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Domain</th>
+      <th>URL</th>
+      <th>User</th>
+      <th>email</th>
     </tr>
   </thead>
   <tbody>
     <% @watchers.each do |watcher| %>
-    <%# watcher.current?(#{current_user}) %>
+      <% #if watcher.author == current_user %>
       <tr>
         <td><%= link_to watcher.domain, watcher_path(watcher) %></td>
+        <td><%= watcher.url %></td>
+        <td><%= watcher.author.username%></td>
+        <td><%= watcher.email %></td>
         <td><%= link_to 'Edit', edit_watcher_path(watcher) %></td>
         <td><%= link_to 'Destroy', watcher, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+      <% #end %>
     <% end %>
   </tbody>
 </table>

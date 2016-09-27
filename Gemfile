@@ -27,7 +27,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'delayed_job_active_record'
 gem 'simplecov', :require => false, :group => :test
-
+gem 'rails-controller-testing'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
@@ -42,6 +42,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+  gem "factory_girl_rails"
 end
 
 group :test do

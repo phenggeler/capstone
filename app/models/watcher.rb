@@ -1,6 +1,24 @@
+require 'httparty'
+require 'nokogiri'
+require 'json'
+require 'csv'
+require 'open-uri'
+require 'open_uri_redirections'
+require 'net/http'
+
 class Watcher < ApplicationRecord
+  
+  
+      belongs_to :author
+      
+      @list_of_urls = Array.new
+      @email = nil
+
+
 
     def self.makeObj(str, email)
+      @email = email
+      x = 'http://'.concat(str)
       uri = URI('http://'+str)
       continue = true
       begin
@@ -23,18 +41,31 @@ class Watcher < ApplicationRecord
         linktext = parse_page.css("a").text
         description = doc.xpath('//meta[@name="Description"]/@content').text
         keywords = doc.xpath('//meta[@name="Keywords"]/@content').text
-        @watcher = Watcher.new(domain: str, use:'live', source: doc.text, email: email, title: title, p: p, h1: h1, h2: h2, h3: h3, link: link, linktext: linktext, description: description, keywords: keywords)
+        #Watcher.crawl(str)
+        @watcher = Watcher.new(domain: str, url: uri, use:'live', source: nil, email: email, title: title, p: p, h1: h1, h2: h2, h3: h3, link: link, linktext: linktext, description: description, keywords: keywords)
       end
       return @watcher
     end
-
+    
+    def worthScanning?(watcher)
+      bigchange = false
+      @watcher = watcher
+      @tmp = Watcher.makeObj(@watcher.domain, 'fake@fake.com')
+      mssg = ''
+      bigchange = false
+      if (!@watcher.source.eql? @tmp.source)
+        bigchange = true
+      end
+      return bigchange
+    end
+   
     def current?(watcher)
         #pass emails
         @watcher = watcher
         @tmp = Watcher.makeObj(@watcher.domain, 'fake@fake.com')
-        mssg = ''
+        #mssg = ''
         bigchange = false
-        if (!@watcher.source.eql? @tmp.source)
+        #if (!@watcher.source.eql? @tmp.source)
             if (!@watcher.p.eql? @tmp.p)
               mssg = mssg + "P Text Has Changed"
               @watcher.p = @tmp.p
@@ -60,6 +91,7 @@ class Watcher < ApplicationRecord
               @watcher.save
             end
             @tmp.destroy
-        end
+        #end
+        return bigchange
     end
 end

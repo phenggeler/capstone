@@ -7,13 +7,22 @@ let(:author) {Author.create(username:'kyle', email:'peter.john.henggeler@gmail.c
 #let(:categorywords) {['one', 'two words', 'three']}
 
   it "has a username" do
-     Author.create(username:'kyle', email:'peter.john.henggeler@gmail.com', password: 'password', password_confirmation:'password', verified: false).should be_valid
+     expect(Author.create(username:'kyle', email:'peter.john.henggeler@gmail.com', password: 'password', password_confirmation:'password', verified: false)).to be_valid
   end
   it "is invalid without a username" do
-      Author.create(email:'peter.john.henggeler@gmail.com', password: 'password', password_confirmation:'password', verified: false).should_not be_valid
+      expect(Author.create(email:'peter.john.henggeler@gmail.com', password: 'password', password_confirmation:'password', verified: false)).not_to be_valid
   end
-  it "is invalid without a lastname" do
-      Author.create(username:'kyle', password: 'password', password_confirmation:'password', verified: false).should_not be_valid
+  it "is invalid without an email" do
+      expect(Author.create(username:'kyle', password: 'password', password_confirmation:'password', verified: false)).not_to be_valid
+  end
+     
+  it "sets verify to false" do
+    @author = Author.create(username: 'kyle',email:'peter.john.henggeler@gmail.com', password: 'password', password_confirmation:'password', verified: false)
+    expect(@author.verified).to eq(false)
+  end
+  
+  it 'has a working verified? method' do
+    expect(Author.verified?(author.email)).to eq(false)
   end
   
 end
