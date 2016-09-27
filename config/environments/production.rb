@@ -92,18 +92,14 @@ Rails.application.configure do
 
 config.action_mailer.raise_delivery_errors = true
 config.action_mailer.perform_deliveries = true
-
-response = RestClient.get "https://mailtrap.io/api/v1/inboxes.json?api_token=#{ENV['MAILTRAP_API_TOKEN']}"
-
-first_inbox = JSON.parse(response)[0] # get first inbox
 config.action_mailer.delivery_method = :smtp
 config.action_mailer.smtp_settings = {
-  :user_name => '2694b327a91ada',
-  :password => '685f4ad0cab907',
-  :address => 'mailtrap.io',
-  :domain => 'mailtrap.io',
-  :port => '2525',
-  :authentication => :cram_md5
-}
+  address:              'smtp.gmail.com',
+  port:                 587,
+  domain:               'gmail.com',
+  user_name:            'siteupdatealerts@gmail.com',
+  password:             'Kershisnik1!',
+  authentication:       'login',
+  enable_starttls_auto: true  }
   
 end
