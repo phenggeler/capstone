@@ -14,9 +14,7 @@ class DomainsController < ApplicationController
   # GET /domains
   # GET /domains.json
   def index
-    @domains = Domain.all
-
-    
+    @domains = Domain.where(author: current_user)
   end
 
   # GET /domains/1

@@ -42,7 +42,7 @@ end
     respond_to do |format|
       if @author.save
         UserMailer.welcome_email(@author).deliver
-        flash[:notice] = "You will be contacted once your account has been approve"
+        flash[:notice] = "You will be contacted once your account has been approved"
         format.html { redirect_to @author }
         format.json { render :show, status: :created, location: @author }
       else

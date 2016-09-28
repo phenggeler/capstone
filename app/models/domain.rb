@@ -40,32 +40,12 @@ class Domain < ApplicationRecord
     end
     darray = Array.new
     unless (@match.nil?)
-      url = URI('https://api.spyonweb.com/v1/analytics/'+@match[0]+'?access_token=QpAlekatYxmO')
-      doc1 = Nokogiri::HTML(open(url,:allow_redirections => :all))
-      str1 =  doc1.text
-      arr= str1.split(/"/)
-      arr.each do |st|
-          if (st.include? '.')
-            if (st != str)
-              darray.push(st)
-            end
-          end
-      end
+      darray = pingApiForUaCode(@match[0], str)
     end
     
     parray = Array.new
     unless (@matchpub.nil?)
-      url = URI('https://api.spyonweb.com/v1/adsense/'+@matchpub[0]+'?access_token=QpAlekatYxmO')
-      doc1 = Nokogiri::HTML(open(url,:allow_redirections => :all))
-      str1 =  doc1.text
-      arr= str1.split(/"/)
-      arr.each do |st|
-          if (st.include? '.')
-            if (st != str)
-              parray.push(st)
-            end
-          end
-      end
+      parray = pingApiForPub(@matchpub[0], str)
     end
     
     
@@ -82,11 +62,7 @@ class Domain < ApplicationRecord
     darray.each do |dom|
       unless (dom == str)
         if (dom.include? "www." )
-          dom.slice!("www.")
-          unless (dom == str)
-            @domain1 = Domain.new(name: dom, uacode: @match, author: current_user)
-            @domain1.save
-          end
+          removeWWW(dom, str, current_user)
         else
           @domain1 = Domain.new(name: dom, uacode: @match, author: current_user)
           @domain1.save
@@ -97,11 +73,7 @@ class Domain < ApplicationRecord
     parray.each do |dom|
       unless (dom == str)
         if (dom.include? "www." )
-          dom.slice!("www.")
-          unless (dom == str)
-            @domain1 = Domain.new(name: dom, uacode: '---', pubid: @pubid, author: current_user)
-            @domain1.save
-          end
+          removeWWW(dom, str, current_user)
         else
           @domain1 = Domain.new(name: dom, uacode: '---', pubid: @pubid, author: current_user)
           @domain1.save
@@ -112,13 +84,54 @@ class Domain < ApplicationRecord
     end
     
     def self.associatedDomains(tmp)
-    @domains = Array.new
-    tua = Domain.find(tmp).uacode
-    Domain.all.each do |dom|
-      if (dom.uacode.eql? tua)
-      @domains.push(dom)
+      @domain = tmp
+      @domains = Array.new
+      tua = Domain.find(@domain).uacode
+      Domain.all.each do |dom|
+        if (dom.uacode.eql? tua)
+        @domains.push(dom)
+        end
       end
+      return @domains
     end
-    return @domains
+    
+    def self.pingApiForPub(mp, str)
+      parray = Array.new
+      url = URI('https://api.spyonweb.com/v1/adsense/'+mp+'?access_token=QpAlekatYxmO')
+      doc1 = Nokogiri::HTML(open(url,:allow_redirections => :all))
+      str1 =  doc1.text
+      arr= str1.split(/"/)
+      arr.each do |st|
+          if (st.include? '.')
+            if (st != str)
+              parray.push(st)
+            end
+          end
+      end
+      return parray
+    end
+    
+    def self.pingApiForUaCode(m, str)
+      darray = Array.new
+      url = URI('https://api.spyonweb.com/v1/analytics/'+m+'?access_token=QpAlekatYxmO')
+      doc1 = Nokogiri::HTML(open(url,:allow_redirections => :all))
+      str1 =  doc1.text
+      arr= str1.split(/"/)
+      arr.each do |st|
+          if (st.include? '.')
+            if (st != str)
+              darray.push(st)
+            end
+          end
+      end
+      return darray
+    end
+    
+    def self.removeWWW(dom, str, current_user)
+      dom.slice!("www.")
+      unless (dom == str)
+        @domain1 = Domain.new(name: dom, uacode: '---', pubid: @pubid, author: current_user)
+        @domain1.save
+      end
     end
 end

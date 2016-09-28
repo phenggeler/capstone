@@ -40,7 +40,7 @@ end
 
 describe "PATCH #update" do
     it "updates the name" do
-      @domain = Domain.create(name:'test.com')
+      @domain = Domain.create(name:'thedomains.com')
       patch :update, :id => @domain.id, domain: {name: 'two.com'}
       @domain.reload
       expect(@domain.name).to eq('two.com')
