@@ -5,7 +5,7 @@
 <%= form_for :domain, url: domains_path do |f| %>
   <p>
     <%= f.label :name%><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, required: true, placeholder: "example.com" %>
   </p>
 
   <p>
