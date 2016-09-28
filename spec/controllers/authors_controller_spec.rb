@@ -2,11 +2,12 @@ require 'rails_helper'
 require 'spec_helper'
 
 RSpec.describe AuthorsController, type: :controller do
+    
+   before(:each) do
+    @author = Author.create(username: 'john', email: 'test@test.com', password: 'password', password_confirmation: 'password')
+    @author.save
+  end
 
-it 'tests the def_zero method' do
-    controller.zero_authors_or_authenticated
-    expect(response).to redirect_to eq(200)
-end
     
 describe "Post #create" do
         
@@ -28,5 +29,22 @@ end
             expect(@author).to eq(@author)
         end
     end
+    
+#    describe "PATCH #update" do
+#    it "updates the username" do
+#      patch :update, :id => @author.id, author: {username: 'two'}
+#      @author.reload
+#      expect(@author.username).to eq('two')
+#    end
+#  end
+  
+#    describe "DELETE #destory" do
+#    it "redirects to the index page" do
+      #post :create, author: {username: 'john', email: 'test@test.com', password: 'password', password_confirmation: 'password'}
+#      @author = Author.last
+#      delete :destroy, id: @author.id
+#      expect(response).to redirect_to notecards_path
+#    end
+#  end
     
 end

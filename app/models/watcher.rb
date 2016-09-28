@@ -63,9 +63,9 @@ class Watcher < ApplicationRecord
         #pass emails
         @watcher = watcher
         @tmp = Watcher.makeObj(@watcher.domain, 'fake@fake.com')
-        #mssg = ''
+        mssg = ''
         bigchange = false
-        #if (!@watcher.source.eql? @tmp.source)
+        if (!@watcher.source.eql? @tmp.source)
             if (!@watcher.p.eql? @tmp.p)
               mssg = mssg + "P Text Has Changed"
               @watcher.p = @tmp.p
@@ -91,7 +91,7 @@ class Watcher < ApplicationRecord
               @watcher.save
             end
             @tmp.destroy
-        #end
+        end
         return bigchange
     end
 end

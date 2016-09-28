@@ -9,6 +9,7 @@ namespace :scheduler do
     watchers = Watcher.all
     watchers.each do |watcher|
       if (watcher.worthScanning?(watcher))
+        puts "sending email for " + watcher.domain
         watcher.current?(watcher)
       end
     end

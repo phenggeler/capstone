@@ -9,7 +9,11 @@ class Author < ApplicationRecord
     
     def self.verified?(email)
       @tmp = Author.where("email = ?", email).first
-      return @tmp.verified
+      if (@tmp)
+        return @tmp.verified
+      else
+        return -1
+      end
     end
   end
 

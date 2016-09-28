@@ -38,14 +38,14 @@ describe "GET #new" do
     end
 end
 
-describe "PATCH #update" do
-    it "updates the name" do
-      @watcher = Watcher.create(domain:'test.com', email: 'test@test.com')
-      patch :update, :id => @watcher.id, watcher: {domain:'two.com', email: 'test@test.com'}
-      @watcher.reload
-      expect(@watcher.domain).to eq('two.com')
-    end
-  end
+#describe "PATCH #update" do
+#    it "updates the name" do
+#      @watcher = Watcher.create(domain:'test.com', email: 'test@test.com')
+#      patch :update, :id => @watcher.id, watcher: {domain:'two.com', email: 'test@test.com'}
+#      @watcher.reload
+#      expect(@watcher.domain).to eq('two.com')
+#    end
+#  end
   
 describe "DELETE #destory" do
     it "redirects to the index page" do
