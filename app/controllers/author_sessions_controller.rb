@@ -10,7 +10,7 @@ class AuthorSessionsController < ApplicationController
     else
       if login(params[:email], params[:password])
         flash[:notice] = 'Logged In Successfully'
-        redirect_back_or_to(authors_path)
+        redirect_back_or_to(domains_path)
       else
         flash.now.alert = "Login failed."
         render action: :new
