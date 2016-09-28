@@ -14,18 +14,27 @@ class DomainsController < ApplicationController
   # GET /domains
   # GET /domains.json
   def index
+    if !logged_in?
+      redirect_to new_author_session_path, alert: 'Please login first.'
+    end
     @domains = Domain.where(author: current_user)
   end
 
   # GET /domains/1
   # GET /domains/1.json
   def show
+    if !logged_in?
+      redirect_to new_author_session_path, alert: 'Please login first.'
+    end
     tmp = params[:id]
     @domains = Domain.associatedDomains(tmp)
   end
 
   # GET /domains/new
   def new
+    if !logged_in?
+      redirect_to new_author_session_path, alert: 'Please login first.'
+    end
     @domain = Domain.new
   end
 

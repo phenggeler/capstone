@@ -16,6 +16,15 @@ describe "Post #create" do
       post :create, author: {username: 'john', email: 'test@test.com', password: 'password', password_confirmation: 'password'}
       expect(response.status).to eq(302)  
     end
+    
+    it "sets second author to false" do 
+      @author = Author.create(username: 'john', email: 'test@test.com', password: 'password', password_confirmation: 'password')
+      @author.save
+      @author1 = Author.create(username: 'john', email: 'test@test.com', password: 'password', password_confirmation: 'password', verified: false)
+      @author1.save
+      expect(@author1.verified).to eq(false)  
+
+    end
 end
 
     it "succeeds on index" do
@@ -30,13 +39,14 @@ end
         end
     end
     
-#    describe "PATCH #update" do
-#    it "updates the username" do
-#      patch :update, :id => @author.id, author: {username: 'two'}
-#      @author.reload
-#      expect(@author.username).to eq('two')
-#    end
-#  end
+    describe "PATCH #update" do
+    it "updates the username" do
+      Author.where(id: nil).update_all(id: 9)
+      patch :update, :id => @author, author: {username: 'two'}
+      @author.reload
+      expect(@author.username).to eq('two')
+    end
+  end
   
 #    describe "DELETE #destory" do
 #    it "redirects to the index page" do

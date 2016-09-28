@@ -2,7 +2,7 @@
 
 
 <%= link_to 'New Domain', new_domain_path %> <br>
-<% if logged_in? %>
+
 <table>
   <thead>
     <tr>
@@ -28,9 +28,7 @@
     <% end %>
   </tbody>
 </table>
-<% else %>
-<% controller.redirect_to new_author_session_path, notice: 'Please login to view that data' %>
-<% end %>
+
 
 <br>
 
