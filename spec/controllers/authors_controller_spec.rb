@@ -39,14 +39,7 @@ end
         end
     end
     
-    describe "PATCH #update" do
-    it "updates the username" do
-      Author.where(id: nil).update_all(id: 9)
-      patch :update, :id => @author, author: {username: 'two'}
-      @author.reload
-      expect(@author.username).to eq('two')
-    end
-  end
+
   
 #    describe "DELETE #destory" do
 #    it "redirects to the index page" do

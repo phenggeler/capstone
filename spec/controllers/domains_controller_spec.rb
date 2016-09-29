@@ -4,10 +4,7 @@ RSpec.describe DomainsController, type: :controller do
 
 
     
-    it "succeeds on index" do
-        get :index # experiment
-        expect(response).to be_success # verification            
-    end
+
     
 describe "Post #create" do
     
