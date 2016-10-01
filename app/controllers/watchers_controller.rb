@@ -40,9 +40,11 @@ class WatchersController < ApplicationController
 
     str = params[:watcher][:domain]
     email = params[:watcher][:email]
+    frequency = params[:watcher][:frequency]
 
     @watcher = Watcher.makeObj(str, email)
     @watcher.author = current_user
+    @watcher.frequency = frequency
 
     respond_to do |format|
       if @watcher.save

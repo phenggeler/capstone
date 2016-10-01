@@ -8,11 +8,18 @@
     <%= f.text_field :domain %>
   </p>
   
-   <p>
+  <p>
     <%= f.label :email%><br>
     <%= f.text_field :email %>
   </p>
- 
+  <p>
+ <%= f.radio_button(:frequency, "hour") %>
+ <%= f.label(:frequency, "Hourly") %>
+ <%= f.radio_button(:frequency, "day") %>
+ <%= f.label(:frequency, "Daily") %>
+ <%= f.radio_button(:frequency, "week") %>
+ <%= f.label(:frequency, "weekly") %>
+ </p>
   <p>
     <button name='button' type='submit'>Submit</button>
   </p>
