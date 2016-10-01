@@ -45,6 +45,7 @@ class WatchersController < ApplicationController
     @watcher = Watcher.makeObj(str, email)
     @watcher.author = current_user
     @watcher.frequency = frequency
+    @watcher.lastscanned = Time.new
 
     respond_to do |format|
       if @watcher.save

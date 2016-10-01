@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161001210249) do
+ActiveRecord::Schema.define(version: 20161001212021) do
 
   create_table "authors", force: :cascade do |t|
     t.string   "username"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20161001210249) do
     t.integer  "author_id"
     t.string   "url"
     t.string   "frequency"
+    t.datetime "lastscanned"
     t.index ["author_id"], name: "index_watchers_on_author_id"
   end
 

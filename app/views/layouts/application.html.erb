@@ -51,8 +51,8 @@ header {
 <body>
 <% if logged_in? %>
 <ul>
-  <li><%= link_to 'Reverse Domain Search', new_domain_path %></li>
-  <li><%= link_to 'Site Monitoring', new_watcher_path %></li>
+  <li><%= link_to 'Reverse Domain Search', domains_path %></li>
+  <li><%= link_to 'Site Monitoring', watchers_path %></li>
   <li><%= link_to 'Facebook Search', facebook_domains_path %></li>
 </ul>
 <% else %>
