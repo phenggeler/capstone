@@ -48,10 +48,12 @@ end
 describe 'spyonweb API method calls' do
  
   before(:all) do
+    uascan = Uacode.new
+    pubscan = Pubcode.new
     @tmpua = Array.new
     @tmppub = Array.new
-    @tmpua = Domain.pingApiForUaCode('UA-48689684', '0-24h.com')
-    @tmppub = Domain.pingApiForPub('pub-5953444431482912', 'liver-disease-symptoms.com')
+    @tmpua = uascan.pingApiForUaCode('UA-48689684', '0-24h.com')
+    @tmppub = pubscan.pingApiForPub('pub-5953444431482912', 'liver-disease-symptoms.com')
   end
  
  it 'will ping Api for UA Code' do

@@ -23,8 +23,9 @@ class UserMailer < ApplicationMailer
         mail(to: @author.email, subject: 'Your Account Has Been Suspended')
     end
     
-    def new_watcher_email(watcher)
+    def new_watcher_email(watcher, content)
         @watcher = watcher
+        @content = content
         @url  = 'https://project-phenggeler.c9users.io/'
         mail(to: @watcher.email, subject: 'You have set up a watcher alert for '+@watcher.domain)
     end

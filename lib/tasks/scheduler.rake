@@ -10,11 +10,10 @@ namespace :scheduler do
     puts "Making the attempt to send email"
     watchers = Watcher.all
     #watchers.each do |watcher|
+    parser = Parsewatcher.new
     Watcher.where("frequency = ?", 'min').find_each do |watcher|
-      if (watcher.worthScanning?(watcher))
-        puts "sending email for " + watcher.domain
-        watcher.current?(watcher)
-      end
+      #puts watcher.domain
+        parser.current?(watcher, watcher.content)
     end
   end
   
@@ -22,11 +21,9 @@ namespace :scheduler do
     puts "Making the attempt to send email"
     watchers = Watcher.all
     #watchers.each do |watcher|
+    parser = Parsewatcher.new
     Watcher.where("frequency = ?", 'hour').find_each do |watcher|
-      if (watcher.worthScanning?(watcher))
-        puts "sending email for " + watcher.domain
-        watcher.current?(watcher)
-      end
+        parser.current?(watcher, watcher.content)
     end
   end
   
@@ -34,11 +31,9 @@ namespace :scheduler do
     puts "Making the attempt to send email"
     watchers = Watcher.all
     #watchers.each do |watcher|
+    parser = Parsewatcher.new
     Watcher.where("frequency = ?", 'day').find_each do |watcher|
-      if (watcher.worthScanning?(watcher))
-        puts "sending email for " + watcher.domain
-        watcher.current?(watcher)
-      end
+        parser.current?(watcher, watcher.content)
     end
   end
 end

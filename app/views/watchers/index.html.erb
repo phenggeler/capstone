@@ -10,6 +10,7 @@
       <th>URL</th>
       <th>User</th>
       <th>email</th>
+      <th>Site Title</th>
     </tr>
   </thead>
   <tbody>
@@ -17,9 +18,10 @@
       <% #if watcher.author == current_user %>
       <tr>
         <td><%= link_to watcher.domain, watcher_path(watcher) %></td>
-        <td><%= watcher.url %></td>
-        <td><%= watcher.author%></td>
+        <td><%= watcher.content.url %></td>
+        <td><%= watcher.author.username%></td>
         <td><%= watcher.email %></td>
+        <td><%= watcher.content.title%></td>
         <td><%= link_to 'Edit', edit_watcher_path(watcher) %></td>
         <td><%= link_to 'Destroy', watcher, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

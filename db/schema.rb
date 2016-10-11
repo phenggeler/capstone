@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161001212021) do
+ActiveRecord::Schema.define(version: 20161008005205) do
 
   create_table "authors", force: :cascade do |t|
     t.string   "username"
@@ -21,6 +21,28 @@ ActiveRecord::Schema.define(version: 20161001212021) do
     t.datetime "updated_at"
     t.boolean  "verified"
     t.index ["email"], name: "index_authors_on_email", unique: true
+  end
+
+  create_table "contents", force: :cascade do |t|
+    t.string   "domain"
+    t.text     "source"
+    t.string   "p"
+    t.string   "h1"
+    t.string   "h2"
+    t.string   "h3"
+    t.integer  "link"
+    t.string   "description"
+    t.string   "keywords"
+    t.string   "use"
+    t.string   "url"
+    t.string   "frequency"
+    t.integer  "sum"
+    t.integer  "watcher_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "title"
+    t.string   "linktext"
+    t.index ["watcher_id"], name: "index_contents_on_watcher_id"
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -68,7 +90,10 @@ ActiveRecord::Schema.define(version: 20161001212021) do
     t.string   "url"
     t.string   "frequency"
     t.datetime "lastscanned"
+    t.integer  "sum"
+    t.integer  "content_id"
     t.index ["author_id"], name: "index_watchers_on_author_id"
+    t.index ["content_id"], name: "index_watchers_on_content_id"
   end
 
 end

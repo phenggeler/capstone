@@ -25,4 +25,6 @@ let(:author) {Author.create(username:'kyle', email:'peter.john.henggeler@gmail.c
     expect(Author.verified?(author.email)).to eq(false)
   end
   
+  
+  
 end
