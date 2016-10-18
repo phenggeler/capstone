@@ -94,6 +94,6 @@ class WatchersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def watcher_params
-      #params.require(:watcher).permit(:username, :email, :password, :password_confirmation)
+      params.require(:watcher).permit(:username, :email, :frequency)
     end
 end

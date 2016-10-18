@@ -22,13 +22,6 @@ describe "Post #create" do
         expect(subject).to redirect_to :action => :show, :id => assigns(:watcher).id           
     end
     
-    it "redirects to show after create" do
-        expect(subject).to redirect_to :action => :show, :id => assigns(:watcher).id           
-    end
-    
-    it "redirects to show after create and displays other domains" do
-        expect(subject).to redirect_to :action => :show, :id => assigns(:watcher).id           
-    end
 end
 
 describe "GET #new" do
@@ -38,12 +31,14 @@ describe "GET #new" do
     end
 end
 
+let (:tmp) {Watcher.create!(domain:'cnn.com', email: 'test@test.com', frequency: 'hours')}
+
 #describe "PATCH #update" do
 #    it "updates the name" do
-#      @watcher = Watcher.create(domain:'test.com', email: 'test@test.com')
-#      patch :update, :id => @watcher.id, watcher: {domain:'two.com', email: 'test@test.com'}
-#      @watcher.reload
-#      expect(@watcher.domain).to eq('two.com')
+#      expect(Watcher.find(tmp.id).id).to eq(tmp.id)
+#      put :update, :id => tmp.id, watcher: {domain:'msnbc.com'}
+#      tmp.reload
+#      expect(response).to be_success
 #    end
 #  end
   

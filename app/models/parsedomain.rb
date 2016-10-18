@@ -7,8 +7,6 @@ def parseSite(str)
   rescue SocketError => e
     #redirect_to new_domain_path, flash: {notice: "Cannot validate domain"} and return 
   end
-  #doc = Nokogiri::HTML(open(uri,:allow_redirections => :all))
-  #this is where we transfer our http response into Nokogiri object
   parse_page = Nokogiri::HTML(page)
   return parse_page
 end
@@ -27,15 +25,6 @@ def findCodes(parse_page)
   else
     ids.push(nil)
   end
-#  parse_page.css('script').each do |script|
-#    txt = script.text
-#    if (txt =~ /.UA-[0-9]+-[0-9]+(.*)/)
-#      @match = txt.match(/UA-[0-9]+/)
-#      ids.push(@match[0])
-#    else
-#      ids.push(nil)
-#    end
-#  end
   return ids
 end
     

@@ -12,7 +12,6 @@ namespace :scheduler do
     #watchers.each do |watcher|
     parser = Parsewatcher.new
     Watcher.where("frequency = ?", 'min').find_each do |watcher|
-      #puts watcher.domain
         parser.current?(watcher, watcher.content)
     end
   end

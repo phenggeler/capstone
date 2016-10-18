@@ -45,6 +45,9 @@ class DomainsController < ApplicationController
   # POST /domains
   # POST /domains.json
   def create
+    if !logged_in?
+      redirect_to new_author_session_path, alert: 'Please login first.' and return
+    end
     str = params[:domain][:name]
     @domain = Domain.makeObj(str, current_user)
     @domain.author = current_user

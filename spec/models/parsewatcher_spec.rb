@@ -18,19 +18,19 @@ describe 'parse comparisons' do
     end
 
     it 'will check compare P' do
-      expect(parser.compareP(watcher.p, watcher2.p)).to eq false
+      expect(parser.compareP(watcher.p, watcher2.p, content)).to eq false
     end
     
     it 'will check compare title' do
-      expect(parser.compareP(watcher.title, watcher2.title)).to eq false
+      expect(parser.compareP(watcher.title, watcher2.title, content)).to eq false
     end
     
     it 'will check compare title' do
-      expect(parser.compareP(watcher.link, watcher2.link)).to eq false
+      expect(parser.compareP(watcher.link, watcher2.link, content)).to eq false
     end
     
     it 'will check compare linktext' do
-      expect(parser.compareP(watcher.linktext, watcher2.linktext)).to eq false
+      expect(parser.compareP(watcher.linktext, watcher2.linktext, content)).to eq false
     end
     
 end 

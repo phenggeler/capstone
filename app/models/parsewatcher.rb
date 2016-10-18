@@ -43,56 +43,65 @@ def current?(watcher, content)
   bigchange = false
   
   if (!@content.sum.eql? @tcon.sum)
-    pchange = compareP(@content.p, @tcon.p)
-    titlechange = compareTitle(@content.title, @tcon.title)  
-    linkChange = compareLinks(@content.link, @tcon.link)
-    linkTextChange = compareLinkText(@content.linktext, @tcon.linktext)
+    puts 'content ' + @content.sum.to_s
+    puts 'content ' + @tcon.sum.to_s
+    
+    pchange = compareP(@content.p, @tcon.p, @content)
+    titlechange = compareTitle(@content.title, @tcon.title, @content)  
+    linkChange = compareLinks(@content.link, @tcon.link, @content)
+    linkTextChange = compareLinkText(@content.linktext, @tcon.linktext, @content)
     if (pchange || titlechange || linkChange || linkTextChange)
       bigchange = true
     end
     if (bigchange)
         puts "sending email for " + watcher.domain
         UserMailer.site_change_email(@watcher, mssg).deliver
+        @watcher = arr[0]
+        @content = @tcon
         @watcher.save
+        @content.save
     end
       @tmp.destroy
   end
 end
 
-def compareP(w, t)
+def compareP(w, t, content)
+    @content = content
+
   if (!w.eql? t)
 #      mssg = mssg + "P Text Has Changed"
-      @watcher.p = @tmp.p
       true
   else
     false
   end
 end
 
-def compareTitle(w, t)
+def compareTitle(w, t, content)
+    @content = content
+
   if (!w.eql? t)
 #    mssg = mssg + "Title Has Changed"
-    @watcher.title = @tmp.title
     true
   else
     false
   end
 end
 
-def compareLinks(w, t)
+def compareLinks(w, t, content)
+    @content = content
+
   if (!w.eql? t)
 #   mssg = mssg +"Number of links has changed"
-    @watcher.link = @tmp.link
     true
   else
     false
   end
 end
 
-def compareLinkText(w,t)
+def compareLinkText(w,t, content)
+  @content = content
   if (!w.eql? t)
 #    mssg = mssg + "Some wording in links has changed"
-    @watcher.linktext = @tmp.linktext
     true
   else
     false

@@ -17,7 +17,6 @@ def pingApiForUaCode(m, str)
 end
 
 def populate(darray, str, m, current_user)
-    puts darray
     darray.each do |dom|
       unless (dom == str)
         if (dom.include? "www." )
