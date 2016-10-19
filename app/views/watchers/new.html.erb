@@ -1,7 +1,7 @@
 <h1>New Watchers</h1>
 <p id="notice"><%= notice %></p>
 
-
+<div class="form">
 <%= form_for :watcher, url: watchers_path do |f| %>
   <p>
     <%= f.label :domain%><br>
@@ -13,7 +13,7 @@
     <%= f.text_field :email %>
   </p>
   <p>
- <%= f.radio_button(:frequency, "min") %>
+ <%= f.radio_button(:frequency, "min") %> 
  <%= f.label(:frequency, "Every 10 Minutes") %>
  <%= f.radio_button(:frequency, "hour") %>
  <%= f.label(:frequency, "Every Hour") %>
@@ -24,8 +24,6 @@
     <button name='button' type='submit'>Submit</button>
   </p>
 </div>
-<h3>Menu</h3>
-<%= link_to 'See All Domains', controller: 'domains' %>
-<%= link_to 'See All Monitors', controller: 'watchers' %>
-  
+</div>
+
 <% end %>

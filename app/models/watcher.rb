@@ -13,19 +13,19 @@ class Watcher < ApplicationRecord
   @list_of_urls = Array.new
   @email = nil
 
-def self.makeObj(str, email)
+def self.makeObj(str, email, frequency, current_user)
   parser = Parsewatcher.new
   parse_page = parser.parseWatcherSite(str, email)
   @watcher = Watcher.new
   @watcher.domain = str
   @watcher.email = email
+  @watcher.author = current_user
+  @watcher.frequency = frequency
+  @watcher.lastscanned = Time.new
   @content = parser.createContent(str, parse_page)
-  @content.watcher_id = @watcher.id
-  @content.save
   arr = []
   arr.push(@watcher)
   arr.push(@content)
-  #@watcher = parser.createWatcher(str, email, parse_page)
   return arr
 end
 

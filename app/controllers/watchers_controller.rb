@@ -36,18 +36,16 @@ class WatchersController < ApplicationController
   # POST /watchers
   # POST /watchers.json
   def create
-    #@watcher = Watcher.new(watcher_params)
-
     str = params[:watcher][:domain]
     email = params[:watcher][:email]
     frequency = params[:watcher][:frequency]
-
-    arr = Watcher.makeObj(str, email)
+    
+    arr = Watcher.makeObj(str, email, frequency, current_user)
+    
     @watcher = arr[0]
     @content = arr[1]
-    @watcher.author = current_user
-    @watcher.frequency = frequency
-    @watcher.lastscanned = Time.new
+
+
     respond_to do |format|
       if @watcher.save
       @content.watcher_id = @watcher.id
@@ -67,7 +65,7 @@ class WatchersController < ApplicationController
   def update
     respond_to do |format|
       if @watcher.update(watcher_params)
-        format.html { redirect_to @watcher, notice: 'watcher was successfully updated.' }
+        format.html { redirect_to @watcher, notice: 'watcher was successfully updated' }
         format.json { render :show, status: :ok, location: @watcher }
       else
         format.html { render :edit }
@@ -94,6 +92,6 @@ class WatchersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def watcher_params
-      params.require(:watcher).permit(:username, :email, :frequency)
+      params.require(:watcher).permit(:domain, :email, :frequency)
     end
 end

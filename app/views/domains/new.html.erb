@@ -1,10 +1,12 @@
-<h1>New Domain Page</h1>
+
 <p id="notice"><%= notice %></p>
 
 
+<div class="form">
 <%= form_for :domain, url: domains_path do |f| %>
   <p>
-    <%= f.label :name%><br>
+    <h2>Search for Related Domains</h2>
+    <% f.label :name%><br>
     <%= f.text_field :name, required: true, placeholder: "example.com" %>
   </p>
 
@@ -12,7 +14,5 @@
     <button name='button' type='submit'>Submit</button>
   </p>
 </div>
-<h3>Menu</h3>
-<%= link_to 'See All Domains', controller: 'domains' %>
-<%= link_to 'Monitor Domain', new_watcher_path %>
+</div>
 <% end %>

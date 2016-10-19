@@ -33,14 +33,16 @@ end
 
 let (:tmp) {Watcher.create!(domain:'cnn.com', email: 'test@test.com', frequency: 'hours')}
 
-#describe "PATCH #update" do
-#    it "updates the name" do
-#      expect(Watcher.find(tmp.id).id).to eq(tmp.id)
-#      put :update, :id => tmp.id, watcher: {domain:'msnbc.com'}
-#      tmp.reload
-#      expect(response).to be_success
-#    end
-#  end
+describe "PATCH #update" do
+    it "updates the name" do
+      expect(Watcher.find(tmp.id).id).to eq(tmp.id)
+      @xwatcher = Watcher.create(domain:'cnn.com', email: 'test@test.com', frequency: 'hours')
+      @xwatcher.save
+      patch :update, :id => @xwatcher.id, watcher: {domain:'msnbc.com'}
+      @xwatcher.reload
+      expect(@xwatcher.domain).to eq('msnbc.com')
+    end
+  end
   
 describe "DELETE #destory" do
     it "redirects to the index page" do
