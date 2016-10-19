@@ -1,24 +1,24 @@
 class AssociationBuilder
     
-    def create_related_domains(match, matchpub, str, current_user)
-        @match = match
-        @matchpub = matchpub
-        darray = populate_darray(@match, str, current_user)
-        parray = populate_parray(@matchpub, str, current_user)
-    end
-    
-    def populate_darray(match, str, current_user)
-        darray = []
-        @match = match
-        
-        unless (@match.nil?)
-          uascan = Uacode.new
-          darray = uascan.pingApiForUaCode(@match, str)
-          uascan.populate(darray, str, @match, current_user)
-        end
-        
-        return darray
-    end
+  def create_related_domains(match, matchpub, str, current_user)
+      @match = match
+      @matchpub = matchpub
+      darray = populate_darray(@match, str, current_user)
+      parray = populate_parray(@matchpub, str, current_user)
+  end
+  
+  def populate_darray(match, str, current_user)
+      darray = []
+      @match = match
+      
+      unless (@match.nil?)
+        uascan = Uacode.new
+        darray = uascan.pingApiForUaCode(@match, str)
+        uascan.populate(darray, str, @match, current_user)
+      end
+      
+      return darray
+  end
   
   def populate_parray(matchpub, str, current_user)
     parray = []

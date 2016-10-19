@@ -9,8 +9,7 @@ def parseWatcherSite(str, email)
     @watcher = Watcher.new(domain: str, email: email, use: 'dead')
     continue = false
   end
-  #doc = Nokogiri::HTML(open(uri,:allow_redirections => :all))
-  #this is where we transfer our http response into Nokogiri object
+
   parse_page = Nokogiri::HTML(page)
   return parse_page
 end
@@ -36,7 +35,7 @@ end
 def current?(watcher, content)
   @watcher = watcher
   @content = content
-  arr = Watcher.makeObj(@watcher.domain, 'fake@fake.com')
+  arr = Watcher.makeObj(@watcher.domain, 'fake@fake.com', 'minutes', Author.last)
   @tmp = arr[0]
   @tcon = arr[1]
   mssg = 'not complete'
@@ -65,47 +64,47 @@ def current?(watcher, content)
   end
 end
 
-def compareP(w, t, content)
-    @content = content
+  def compareP(w, t, content)
+      @content = content
+  
+    if (!w.eql? t)
+  #      mssg = mssg + "P Text Has Changed"
+        true
+    else
+      false
+    end
+  end
 
-  if (!w.eql? t)
-#      mssg = mssg + "P Text Has Changed"
+  def compareTitle(w, t, content)
+      @content = content
+  
+    if (!w.eql? t)
+  #    mssg = mssg + "Title Has Changed"
       true
-  else
-    false
+    else
+      false
+    end
   end
-end
 
-def compareTitle(w, t, content)
+  def compareLinks(w, t, content)
+      @content = content
+  
+    if (!w.eql? t)
+  #   mssg = mssg +"Number of links has changed"
+      true
+    else
+      false
+    end
+  end
+
+  def compareLinkText(w,t, content)
     @content = content
-
-  if (!w.eql? t)
-#    mssg = mssg + "Title Has Changed"
-    true
-  else
-    false
+    if (!w.eql? t)
+  #    mssg = mssg + "Some wording in links has changed"
+      true
+    else
+      false
+    end
   end
-end
-
-def compareLinks(w, t, content)
-    @content = content
-
-  if (!w.eql? t)
-#   mssg = mssg +"Number of links has changed"
-    true
-  else
-    false
-  end
-end
-
-def compareLinkText(w,t, content)
-  @content = content
-  if (!w.eql? t)
-#    mssg = mssg + "Some wording in links has changed"
-    true
-  else
-    false
-  end
-end
 
 end

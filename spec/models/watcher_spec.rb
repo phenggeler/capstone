@@ -7,7 +7,7 @@ RSpec.describe Watcher, type: :model do
 
 describe 'methods' do
     it 'will handle a new watcher object with active site' do
-     @watcher = Watcher.makeObj('thedomains.com', 'peter.john.henggeler@gmail.com')
+     @watcher = Watcher.makeObj('thedomains.com', 'peter.john.henggeler@gmail.com', 'hours', Author.last)
      expect(@watcher[0].domain).to eq 'thedomains.com'
     end
     
