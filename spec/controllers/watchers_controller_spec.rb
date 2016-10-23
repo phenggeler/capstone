@@ -35,14 +35,13 @@ let (:tmp) {Watcher.create!(domain:'cnn.com', email: 'test@test.com', frequency:
 
 describe "PATCH #update" do
     
-    
     it "updates the name" do
       expect(Watcher.find(tmp.id).id).to eq(tmp.id)
       patch :update, :id => tmp.id, watcher: {domain:'msnbc.com'}
       tmp.reload
       expect(tmp.domain).to eq('msnbc.com')
     end
-  end
+end
   
 describe "DELETE #destory" do
     it "redirects to the index page" do
