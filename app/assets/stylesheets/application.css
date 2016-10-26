@@ -129,6 +129,20 @@ span {
      background-color: white;
 }
 
+.destroy-link{
+    padding: 1px;
+    margin: 0;
+    margin-left: 1em;
+    border-color: red;
+    font-wegith: normal;
+    background-color: transparent;
+    color: red;
+    font-size: 60%;
+}
+
+.destroy-link:hover{
+    background-color: blue;
+}
 
 .form {
   position: relative;

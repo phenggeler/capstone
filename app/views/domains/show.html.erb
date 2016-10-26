@@ -25,6 +25,8 @@
         <td><%= domain.pubid %></td>
         <td><%= link_to 'Edit', edit_domain_path(domain) %></td>
         <td><%= link_to 'Destroy', domain, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to "Delete", domain_path(domain_id: @domain.id, id: domain.id), method: :delete, data: {confirm: "Are you sure?"}, class: 'destroy-link', remote: true %></td>
+
       </tr>
     <% end %>
   </tbody>

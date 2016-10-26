@@ -80,11 +80,11 @@ class DomainsController < ApplicationController
   # DELETE /domains/1
   # DELETE /domains/1.json
   def destroy
-    @domain.destroy
+   #@domain.destroy
     respond_to do |format|
-      format.html { redirect_to domains_url, notice: 'Domain was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+      #format.html { redirect_to domains_url, notice: 'Domain was successfully destroyed.' }
+      format.js
+  end
 end
 
   private

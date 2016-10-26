@@ -1,0 +1,7 @@
+console.log('hello');
+
+$('#domain-row-<%= @domain.id %>').fadeOut();
+
+$('.delete_domain').bind('ajax:success', function() {
+   $(this).closest('tr').fadeOut();
+});
