@@ -2,11 +2,12 @@
 # The default is nothing which will include only core features (password encryption, login/logout).
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging, :external
-Rails.application.config.sorcery.submodules = []
+Rails.application.config.sorcery.submodules = [:external]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
   # -- core --
+  config.external_providers = [:google]
   # What controller action to call for non-authenticated users. You can also
   # override the 'not_authenticated' method of course.
   # Default: `:not_authenticated`
@@ -128,10 +129,11 @@ Rails.application.config.sorcery.configure do |config|
   # config.github.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=github"
   # config.github.user_info_mapping = {:email => "name"}
   #
-  # config.google.key = ""
-  # config.google.secret = ""
-  # config.google.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=google"
-  # config.google.user_info_mapping = {:email => "email", :username => "name"}
+  config.google.key = ENV['google_oauth_client_id']
+  config.google.secret = ENV['google_oauth_client_secret']
+  config.google.callback_url = "https://project-phenggeler.c9users.io/oauth/callback?provider=google"
+  config.google.user_info_mapping = {:email => "email", :username => "name"}
+  
   #
   # config.vk.key = ""
   # config.vk.secret = ""
@@ -436,13 +438,13 @@ Rails.application.config.sorcery.configure do |config|
     # Class which holds the various external provider data for this user.
     # Default: `nil`
     #
-    # user.authentications_class =
+     user.authentications_class = Authentication
 
 
-    # User's identifier in authentications class.
+    #  User's identifier in authentications class.
     # Default: `:user_id`
     #
-    # user.authentications_user_id_attribute_name =
+    # user.authentications_user_id_attribute_name = :author_id
 
 
     # Provider's identifier in authentications class.
@@ -459,5 +461,5 @@ Rails.application.config.sorcery.configure do |config|
 
   # This line must come after the 'user config' block.
   # Define which model authenticates with sorcery.
-  config.user_class = "Author"
+  config.user_class = "User"
 end

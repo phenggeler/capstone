@@ -15,11 +15,11 @@
   </thead>
   <tbody>
     <% @watchers.each do |watcher| %>
-      <% #if watcher.author == current_user %>
+      <% #if watcher.user == current_user %>
       <tr>
         <td><%= link_to watcher.domain, watcher_path(watcher) %></td>
         <td><%= watcher.content.url %></td>
-        <td><%= watcher.author.username%></td>
+        <td><%= watcher.user.username%></td>
         <td><%= watcher.email %></td>
         <td><%= watcher.content.title%></td>
         <td><%= link_to 'Edit', edit_watcher_path(watcher) %></td>

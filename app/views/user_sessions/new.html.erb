@@ -14,7 +14,7 @@
 <div id="rightcolumn">
 <div class="login-page">
   <div class="form">
-  <%= form_tag author_sessions_path, method: :post do %>
+  <%= form_tag user_sessions_path, method: :post do %>
   <div class = "login-form">
     <div class="field">
       <%= label_tag :email %>
@@ -32,7 +32,9 @@
   <% end %>
   <div>
     <br>
-  <%= link_to 'Create Account', new_author_path %>
+  <%= link_to 'Create Account', new_user_path %>
+  <%= link_to 'Login with Google', auth_at_provider_path(:provider => :google) %> | 
+
   </div>
   </div>
   </div>
@@ -41,7 +43,7 @@
 </div>
 <% else %>
 <br>
-<td><% controller.redirect_to authors_path %></td>
+<td><% controller.redirect_to users_path %></td>
 <br>
 <% end %>
 

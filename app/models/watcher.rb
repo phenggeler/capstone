@@ -7,7 +7,7 @@ require 'open_uri_redirections'
 require 'net/http'
 
 class Watcher < ApplicationRecord
-  belongs_to :author
+  belongs_to :user
   has_one :content, dependent: :destroy
   #belongs_to :contents, dependent: :destroy
   @list_of_urls = Array.new
@@ -19,7 +19,7 @@ class Watcher < ApplicationRecord
     @watcher = Watcher.new
     @watcher.domain = str
     @watcher.email = email
-    @watcher.author = current_user
+    @watcher.user = current_user
     @watcher.frequency = frequency
     @watcher.lastscanned = Time.new
     @content = Content.createContent(str, parse_page)

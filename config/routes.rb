@@ -5,15 +5,26 @@ Rails.application.routes.draw do
     end
   end
   
+  post "oauth/callback" => "oauths#callback"
+  get "oauth/callback" => "oauths#callback" # for use with Github, Facebook
+  get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
 
-  resources :authors
+  resources :users
   resources :watchers
-  resources :author_sessions, only: [ :new, :create, :destroy ]
+  resources :user_sessions, only: [ :new, :create, :destroy ]
 
-  get 'login'  => 'author_sessions#new'
-  get 'logout' => 'author_sessions#destroy'
+  get 'login'  => 'user_sessions#new'
+  get 'logout' => 'user_sessions#destroy'
   
-  root 'author_sessions#new'
+  root 'user_sessions#new'
+  
+  namespace :api do
+    namespace :v1 do
+      # normal route commands go in here!
+      # for instance,
+      resources :domains, only: [:index, :show]
+    end
+  end
   
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

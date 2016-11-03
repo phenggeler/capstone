@@ -10,17 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161008005205) do
+ActiveRecord::Schema.define(version: 20161101230612) do
 
-  create_table "authors", force: :cascade do |t|
-    t.string   "username"
-    t.string   "email",            null: false
-    t.string   "crypted_password"
-    t.string   "salt"
+  create_table "authentications", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.string   "provider",   null: false
+    t.string   "uid",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "verified"
-    t.index ["email"], name: "index_authors_on_email", unique: true
+    t.index ["provider", "uid"], name: "index_authentications_on_provider_and_uid"
   end
 
   create_table "contents", force: :cascade do |t|
@@ -66,8 +64,24 @@ ActiveRecord::Schema.define(version: 20161008005205) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "pubid"
-    t.integer  "author_id"
-    t.index ["author_id"], name: "index_domains_on_author_id"
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_domains_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "username"
+    t.string   "email",            null: false
+    t.string   "crypted_password"
+    t.string   "salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "verified"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "api_auth_token"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["provider"], name: "index_users_on_provider"
+    t.index ["uid"], name: "index_users_on_uid"
   end
 
   create_table "watchers", force: :cascade do |t|
@@ -86,14 +100,14 @@ ActiveRecord::Schema.define(version: 20161008005205) do
     t.string   "keywords"
     t.string   "linktext"
     t.string   "use"
-    t.integer  "author_id"
+    t.integer  "user_id"
     t.string   "url"
     t.string   "frequency"
     t.datetime "lastscanned"
     t.integer  "sum"
     t.integer  "content_id"
-    t.index ["author_id"], name: "index_watchers_on_author_id"
     t.index ["content_id"], name: "index_watchers_on_content_id"
+    t.index ["user_id"], name: "index_watchers_on_user_id"
   end
 
 end
