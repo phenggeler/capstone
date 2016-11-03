@@ -7,11 +7,19 @@
 <div class="divTableBody">
 <div class="divTableRow">
 <div class="divTableCell">Domain</div>
-<div class="divTableCell">Has Changed?</div>
+<div class="divTableCell">Title</div>
+<div class="divTableCell">Keywords</div>
+<div class="divTableCell">Description</div>
+<div class="divTableCell">Number of Links</div>
+
 </div>
 <div class="divTableRow">
 <div class="divTableCell"><%= link_to @watcher.domain, watcher_path(@watcher), class:"link" %></div>
-<div class="divTableCell">tmp</div>
+<div class="divTableCell"><%= @watcher.content.title%></div>
+<div class="divTableCell"><%= @watcher.content.keywords%></div>
+<div class="divTableCell"><%= @watcher.content.description%></div>
+<div class="divTableCell"><%= @watcher.content.link%></div>
+
 </div>
 </div>
 </div>

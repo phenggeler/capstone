@@ -15,16 +15,16 @@ class DomainsController < ApplicationController
   # GET /domains.json
   def index
     if !logged_in?
-      redirect_to new_author_session_path, alert: 'Please login first.'
+      redirect_to new_user_session_path, alert: 'Please login first.'
     end
-    @domains = Domain.where(author: current_user)
+    @domains = Domain.where(user: current_user)
   end
 
   # GET /domains/1
   # GET /domains/1.json
   def show
     if !logged_in?
-      redirect_to new_author_session_path, alert: 'Please login first.'
+      redirect_to new_user_session_path, alert: 'Please login first.'
     end
     tmp = params[:id]
     @domains = Domain.associatedDomains(tmp)
@@ -33,7 +33,7 @@ class DomainsController < ApplicationController
   # GET /domains/new
   def new
     if !logged_in?
-      redirect_to new_author_session_path, alert: 'Please login first.'
+      redirect_to new_user_session_path, alert: 'Please login first.'
     end
     @domain = Domain.new
   end
@@ -46,11 +46,11 @@ class DomainsController < ApplicationController
   # POST /domains.json
   def create
     if !logged_in?
-      redirect_to new_author_session_path, alert: 'Please login first.' and return
+      redirect_to new_user_session_path, alert: 'Please login first.' and return
     end
     str = params[:domain][:name]
     @domain = Domain.makeObj(str, current_user)
-    @domain.author = current_user
+    @domain.user = current_user
 
     respond_to do |format|
       if @domain.save

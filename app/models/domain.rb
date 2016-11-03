@@ -1,18 +1,17 @@
 class Domain < ApplicationRecord
   attr_reader :associated
   attr_accessor :associated
-  validates_uniqueness_of :name
+  validates :name, :uniqueness  => {:scope=>:user_id}
   validates :name, presence: true
-  belongs_to :author
+  belongs_to :user
   
   def self.makeObj(str, current_user)
-    
     ids = parse_for_codes(str)
     @matchpub = ids[0]
     @match = ids[1]
     task = AssociationBuilder.new
     task.create_related_domains(@match, @matchpub, str, current_user)
-    @domain = Domain.new(name: str, uacode: @match, pubid: @matchpub, author: current_user)
+    @domain = Domain.new(name: str, uacode: @match, pubid: @matchpub, user: current_user)
     return @domain
   end
   

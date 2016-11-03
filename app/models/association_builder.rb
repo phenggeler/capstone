@@ -1,12 +1,12 @@
 class AssociationBuilder
   
   def create_related_domains(match, matchpub, str, current_user)
-      @match = match
-      @matchpub = matchpub
-      @ping = ApiPing.new
-      @populator = Populator.new
-      darray = populate_darray(@match, str, current_user)
-      parray = populate_parray(@matchpub, str, current_user)
+    @match = match
+    @matchpub = matchpub
+    @ping = ApiPing.new
+    @populator = Populator.new
+    darray = populate_darray(@match, str, current_user)
+    parray = populate_parray(@matchpub, str, current_user)
   end
   
   def populate_darray(match, str, current_user)
@@ -32,4 +32,5 @@ class AssociationBuilder
     
     return parray
   end
+  
 end

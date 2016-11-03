@@ -24,7 +24,7 @@
         <td><%= link_to domain.name, domain_path(domain) %></td>
         <td><%= domain.uacode %></td>
         <td><%= domain.pubid %></td>
-        <td><%= domain.author.username %></td>
+        <td><%= domain.user.username %></td>
         <td><%= link_to 'Edit', edit_domain_path(domain) %></td>
         <td><%= link_to 'Destroy', domain, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= link_to "Delete", domain, method: :delete, data: {confirm: "Are you sure?"}, class: 'destroy-link', remote: true , :class => 'delete_domain'%></td>

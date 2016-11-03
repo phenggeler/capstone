@@ -6,7 +6,7 @@ class Populator
           if (dom.include? "www." )
             dom = Uacode.removeWWW(dom)
           else
-            @domain1 = Domain.new(name: dom, uacode: m, pubid: mp, author: current_user)
+            @domain1 = Domain.new(name: dom, uacode: m, pubid: mp, user: current_user)
             @domain1.save
           end
         end

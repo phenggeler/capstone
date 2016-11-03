@@ -1,12 +1,12 @@
-class AuthorSessionsController < ApplicationController
+class UserSessionsController < ApplicationController
     
   def new
   end
 
   def create
-    if (Author.count > 0 && !Author.verified?(params[:email]))
+    if (User.count > 0 && !User.verified?(params[:email]))
         flash[:alert] = 'This is not a verified account'
-        redirect_to(new_author_session_path)
+        redirect_to(new_user_session_path)
     else
       if login(params[:email], params[:password])
         flash[:notice] = 'Logged In Successfully'
@@ -20,6 +20,6 @@ class AuthorSessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to(new_author_session_path, notice: 'Logged out!')
+    redirect_to(new_user_session_path, notice: 'Logged out!')
   end
   end

@@ -22,7 +22,7 @@ class Pubcode
           if (dom.include? "www." )
             dom = Pubcode.removeWWW(dom)
           else
-            @domain1 = Domain.new(name: dom, pubid: mp, author: current_user)
+            @domain1 = Domain.new(name: dom, pubid: mp, user: current_user)
             @domain1.save
           end
         end
