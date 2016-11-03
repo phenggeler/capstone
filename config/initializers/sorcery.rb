@@ -131,7 +131,7 @@ Rails.application.config.sorcery.configure do |config|
   #
   config.google.key = ENV['google_oauth_client_id']
   config.google.secret = ENV['google_oauth_client_secret']
-  config.google.callback_url = "https://project-phenggeler.c9users.io/oauth/callback?provider=google"
+  config.google.callback_url = "https://whispering-anchorage-59587.herokuapp.com/oauth/callback?provider=google"
   config.google.user_info_mapping = {:email => "email", :username => "name"}
   
   #
