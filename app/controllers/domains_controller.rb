@@ -32,9 +32,7 @@ class DomainsController < ApplicationController
 
   # GET /domains/new
   def new
-    if !logged_in?
-      redirect_to new_user_session_path, alert: 'Please login first.'
-    end
+
     @domain = Domain.new
   end
 
@@ -45,9 +43,6 @@ class DomainsController < ApplicationController
   # POST /domains
   # POST /domains.json
   def create
-    if !logged_in?
-      redirect_to new_user_session_path, alert: 'Please login first.' and return
-    end
     str = params[:domain][:name]
     @domain = Domain.makeObj(str, current_user)
     @domain.user = current_user
@@ -60,7 +55,7 @@ class DomainsController < ApplicationController
         format.html { render :new }
         format.json { render json: @domain.errors, status: :unprocessable_entity }
       end
-    end 
+    end
   end
 
   # PATCH/PUT /domains/1
@@ -83,7 +78,7 @@ class DomainsController < ApplicationController
    #@domain.destroy
     respond_to do |format|
       #format.html { redirect_to domains_url, notice: 'Domain was successfully destroyed.' }
-      format.js
+      format.js 
   end
 end
 

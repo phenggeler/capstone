@@ -12,7 +12,7 @@ describe 'populate' do
     end
     
     it 'will populate the array' do
-        author = Author.new
+        author = User.new
         parray = []
         parray.push('thedomains.com')
         parray.push('lendingclub.com')
@@ -20,6 +20,12 @@ describe 'populate' do
         p = Pubcode.new
         p.populate(parray, 'sample.com', 'sample', author)
         expect(Domain.last.name).to eq 'nelnet.com'
+    end
+    
+    it 'will ping api for pub' do
+       x = Pubcode.new
+       array = x.pingApiForPub('pub-5953444431482912', 'fullmooncalendar.net')
+       expect(array.any?).to eq true
     end
     
 end 

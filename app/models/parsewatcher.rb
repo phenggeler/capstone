@@ -19,7 +19,7 @@ def createContent(str, parse_page)
   h = {
     'domain' => str,
     'url' => uri,
-    'use' => live,
+    'use' => 'live',
     'source' => get_source(parse_page),
     'sum' => get_sum(parse_page),
     'title' => get_title(parse_page),
@@ -91,7 +91,7 @@ def current?(watcher, content)
   if (!@content.sum.eql? @tcon.sum)
     unless @content.p.eql? @tcon.p
       mssg.push("Some generic P text on the page has changed")
-      pchange = true
+      pChange = true
     end
     
     unless @content.title.eql? @tcon.title
@@ -106,7 +106,7 @@ def current?(watcher, content)
       mssg.push("The link text on the page has changed")
       linkTextChange = true
     end
-    if (pchange || titlechange || linkChange || linkTextChange)
+    if (pChange || titleChange || linkChange || linkTextChange)
       bigchange = true
     end
     if (bigchange)
@@ -121,47 +121,5 @@ def current?(watcher, content)
   end
 end
 
-  def compareP(w, t, content)
-      @content = content
-  
-    if (!w.eql? t)
-  #      mssg = mssg + "P Text Has Changed"
-        true
-    else
-      false
-    end
-  end
-
-  def compareTitle(w, t, content)
-      @content = content
-  
-    if (!w.eql? t)
-  #    mssg = mssg + "Title Has Changed"
-      true
-    else
-      false
-    end
-  end
-
-  def compareLinks(w, t, content)
-      @content = content
-  
-    if (!w.eql? t)
-  #   mssg = mssg +"Number of links has changed"
-      true
-    else
-      false
-    end
-  end
-
-  def compareLinkText(w,t, content)
-    @content = content
-    if (!w.eql? t)
-  #    mssg = mssg + "Some wording in links has changed"
-      true
-    else
-      false
-    end
-  end
 
 end

@@ -1,5 +1,4 @@
 
-
 <% if !logged_in? %>
 <div id="wrapper">
 <div id="leftcolumn">
@@ -12,7 +11,14 @@
 </div>
 </div>
 <div id="rightcolumn">
+<div style="margin-left: 50px">
+  <%= link_to 'Login with Google', auth_at_provider_path(:provider => :google), class: " button loginBtn loginBtn--google" %>  
+<button class="loginBtn loginBtn--facebook">
+  Login with Facebook
+</button>
+</div>
 <div class="login-page">
+
   <div class="form">
   <%= form_tag user_sessions_path, method: :post do %>
   <div class = "login-form">
@@ -33,12 +39,11 @@
   <div>
     <br>
   <%= link_to 'Create Account', new_user_path %>
-  <%= link_to 'Login with Google', auth_at_provider_path(:provider => :google) %> | 
-
   </div>
   </div>
   </div>
   </div>
+  
   </div>
 </div>
 <% else %>

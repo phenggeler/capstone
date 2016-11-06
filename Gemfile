@@ -30,7 +30,7 @@ gem 'simplecov', :require => false, :group => :test
 gem 'rails-controller-testing'
 gem 'rest-client'
 gem 'figaro'
-
+gem 'fabrication'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

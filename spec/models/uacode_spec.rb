@@ -11,6 +11,16 @@ describe 'populate' do
         expect(x).to eq ('markmonitor.com')
     end
     
+    it 'will populate arrays' do 
+      uacode = Uacode.new
+      darray = ['cnn.com', 'thedomains.com', 'markmonitor.com']
+      str = 'thedomains.com'
+      c = Domain.count
+      m = 'UA-523453'
+      uacode.populate(darray, str, m, User.last)
+      expect(Domain.count).to be > c
+    end
+    
 end 
 
 

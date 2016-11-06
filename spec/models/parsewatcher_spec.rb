@@ -10,30 +10,6 @@ let (:content) {Content.create(domain: 'test', url: 'test', use:'live', source: 
 let (:watcher2) {Watcher.create(domain: 'thedomains.com', email: 'peter.john.henggeler@gmail.com')}
 
 
-describe 'parse comparisons' do
-    
-    it 'will process a title' do
-     parse_page = parser.parseWatcherSite('thedomains.com', "fake@fake.com")
-     expect(parse_page.css('title').text).not_to eq nil
-    end
-
-    it 'will check compare P' do
-      expect(parser.compareP(watcher.p, watcher2.p, content)).to eq false
-    end
-    
-    it 'will check compare title' do
-      expect(parser.compareP(watcher.title, watcher2.title, content)).to eq false
-    end
-    
-    it 'will check compare title' do
-      expect(parser.compareP(watcher.link, watcher2.link, content)).to eq false
-    end
-    
-    it 'will check compare linktext' do
-      expect(parser.compareP(watcher.linktext, watcher2.linktext, content)).to eq false
-    end
-    
-end 
 
 describe 'current? comparisons' do
     it 'will update title current?' do

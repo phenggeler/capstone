@@ -3,37 +3,37 @@ require 'rails_helper'
 RSpec.describe DomainsController, type: :controller do
     
     before(:all) do
-        @author = Author.create(username: 'john', email: 'test@test.com', password: 'password', password_confirmation: 'password')
-        @author.save
+        @user = User.create(username: 'john', email: 'test@test.com', password: 'password', password_confirmation: 'password')
+        @user.save
     end
     
 describe 'get index' do
     it 'redirects to domain path if logged in' do
-        login_user(@author)
+        login_user(@user)
         expect(controller.current_user).to be_present
         get :index
         expect(response).to be_success
     end
     
-    it 'redirects to new author session path if not logged in' do
+    it 'redirects to new user session path if not logged in' do
         get :index
-        expect(response).to redirect_to new_author_session_path
+        expect(response).to redirect_to new_user_session_path
     end
 end
 
 describe 'get show' do
 
-    it 'redirects to new_author_session_path if not logged_in' do
-        login_user(@author)
+    it 'redirects to new_user_session_path if not logged_in' do
+        login_user(@user)
         @domain1 = Domain.create(name: 'msnbc.com')
         @domain1.save
         logout_user
         get :show, :id => @domain1.id
-        expect(response).to redirect_to new_author_session_path
+        expect(response).to redirect_to new_user_session_path
     end
     
     it 'redirects to show page if logged_in' do
-        login_user(@author)
+        login_user(@user)
         @domain1 = Domain.create(name: 'nbc.com')
         @domain1.save
         get :show, :id => @domain1.id
@@ -46,7 +46,7 @@ end
 describe "Post #create" do
     
     before(:each) do
-        login_user(@author)
+        login_user(@user)
     end
     
     subject { post :create, :domain => { :name => "dogville.com" }}
@@ -71,7 +71,7 @@ end
 describe "PATCH #update" do
     
     before(:each) do
-        login_user(@author)
+        login_user(@user)
     end
 
     it "updates the name" do
@@ -86,8 +86,8 @@ describe "PATCH #update" do
 describe "DELETE #destory" do
     it "redirects to the index page" do
       @domain = Domain.create(name: 'one.com')
-      delete :destroy, id: @domain.id
-      expect(response).to redirect_to domains_path
+      delete :destroy, id: @domain.id, format: 'js'
+      expect(response).to have_http_status(:ok)
     end
   end
 end

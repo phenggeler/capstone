@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       # normal route commands go in here!
       # for instance,
-      resources :domains, only: [:index, :show]
+      resources :domains, only: [:index, :show, :create, :new, :destroy]
     end
   end
   
