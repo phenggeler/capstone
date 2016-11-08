@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161101003750) do
+ActiveRecord::Schema.define(version: 20161106231623) do
 
   create_table "authentications", force: :cascade do |t|
     t.integer  "user_id",    null: false
@@ -86,26 +86,14 @@ ActiveRecord::Schema.define(version: 20161101003750) do
 
   create_table "watchers", force: :cascade do |t|
     t.string   "domain"
-    t.text     "source"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "email"
-    t.string   "title"
-    t.string   "p"
-    t.string   "h1"
-    t.string   "h2"
-    t.string   "h3"
-    t.integer  "link"
-    t.string   "description"
-    t.string   "keywords"
-    t.string   "linktext"
-    t.string   "use"
     t.integer  "user_id"
     t.string   "url"
+    t.integer  "content_id"
     t.string   "frequency"
     t.datetime "lastscanned"
-    t.integer  "sum"
-    t.integer  "content_id"
     t.index ["content_id"], name: "index_watchers_on_content_id"
     t.index ["user_id"], name: "index_watchers_on_user_id"
   end

@@ -6,8 +6,7 @@ class Uacode
           if (dom.include? "www." )
             dom = Uacode.removeWWW(dom)
           else
-            @domain1 = Domain.new(name: dom, uacode: m, user: current_user)
-            @domain1.save
+            @domain1 = Domain.create(name: dom, uacode: m, user: current_user)
           end
         end
       end

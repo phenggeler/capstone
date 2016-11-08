@@ -1,11 +1,11 @@
 class OauthsController < ApplicationController
   skip_filter :require_login
-
+  
   
   def oauth
     login_at(params[:provider])
   end
-
+  
   def callback
     provider = auth_params[:provider]
     if @user = login_from(provider)
@@ -21,9 +21,7 @@ class OauthsController < ApplicationController
       end
     end
   end
-  #example for Rails 4: add private method below and use "auth_params[:provider]" in place of 
-  #"params[:provider] above.
-
+  
    private
    def auth_params
      params.permit(:code, :provider)

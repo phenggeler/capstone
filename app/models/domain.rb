@@ -7,19 +7,18 @@ class Domain < ApplicationRecord
   
   def self.makeObj(str, current_user)
     ids = parse_for_codes(str)
-    @matchpub = ids[0]
-    @match = ids[1]
+    @matchpub, @match = ids[0], ids[1]
     task = AssociationBuilder.new
     task.create_related_domains(@match, @matchpub, str, current_user)
     @domain = Domain.new(name: str, uacode: @match, pubid: @matchpub, user: current_user)
-    return @domain
+    @domain
   end
   
   def self.parse_for_codes(str)
     parser = Parsedomain.new
     parse_page = parser.parseSite(str)
     ids = parser.findCodes(parse_page)
-    return ids
+    ids
   end
   
   def self.associatedDomains(tmp)
@@ -31,7 +30,7 @@ class Domain < ApplicationRecord
         @domains.push(dom)
       end
     end
-    return @domains
+    @domains
   end
   
 end

@@ -4,10 +4,11 @@ require 'spec_helper'
 describe OauthsController do
     
   describe "#callback" do
+    let (:tmp) {User.create!(username: 'john', email: 'test9@test.com', password: 'password', password_confirmation: 'password', verified: false)}
+    
     it 'logs in a linked user' do
       OauthsController.any_instance.should_receive(:login_from).with('google').and_return(Authentication.new)
-      alice = Fabricate(:user)
-      session[:user_id] = alice.id
+      session[:user_id] = tmp.id
       get :callback, provider: 'google', code: '123'
 
       expect(flash[:notice]).to be_present
@@ -18,6 +19,10 @@ describe OauthsController do
 
       get :callback, provider: 'google', code: '123'
       expect(flash[:alert]).to be_present
+    end
+    
+    it 'logins at provider' do
+      get :oauth, provider: 'google'
     end
   end
 

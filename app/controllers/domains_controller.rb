@@ -11,17 +11,13 @@ require 'net/http'
 class DomainsController < ApplicationController
   before_action :set_domain, only: [:show, :edit, :update, :destroy]
 
-  # GET /domains
-  # GET /domains.json
   def index
     if !logged_in?
       redirect_to new_user_session_path, alert: 'Please login first.'
     end
-    @domains = Domain.where(user: current_user)
+    @domains = Domain.includes(:user).where(user: current_user)
   end
 
-  # GET /domains/1
-  # GET /domains/1.json
   def show
     if !logged_in?
       redirect_to new_user_session_path, alert: 'Please login first.'
@@ -30,23 +26,18 @@ class DomainsController < ApplicationController
     @domains = Domain.associatedDomains(tmp)
   end
 
-  # GET /domains/new
   def new
-
     @domain = Domain.new
   end
 
-  # GET /domains/1/edit
   def edit
   end
 
-  # POST /domains
-  # POST /domains.json
   def create
     str = params[:domain][:name]
     @domain = Domain.makeObj(str, current_user)
     @domain.user = current_user
-
+    
     respond_to do |format|
       if @domain.save
         format.html { redirect_to @domain, notice: 'Domain was successfully created.' }
@@ -58,8 +49,6 @@ class DomainsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /domains/1
-  # PATCH/PUT /domains/1.json
   def update
     respond_to do |format|
       if @domain.update(domain_params)
@@ -72,25 +61,22 @@ class DomainsController < ApplicationController
     end
   end
 
-  # DELETE /domains/1
-  # DELETE /domains/1.json
+
   def destroy
-   #@domain.destroy
-    respond_to do |format|
-      #format.html { redirect_to domains_url, notice: 'Domain was successfully destroyed.' }
-      format.js 
-  end
+    @domain.destroy
+      respond_to do |format|
+        format.js 
+    end
 end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_domain
-      @domain = Domain.find(params[:id])
-    end
+private
+  
+  def set_domain
+    @domain = Domain.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def domain_params
-      params.require(:domain).permit(:name, :uacode)
-    end
+  def domain_params
+    params.require(:domain).permit(:name, :uacode)
+  end
   
 end

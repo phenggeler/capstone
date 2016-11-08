@@ -69,7 +69,6 @@ RSpec.describe UsersController, type: :controller do
         
         before(:each) do
             @user = User.create(username: 'john', email: 'test10@test.com', password: 'password', password_confirmation: 'password')
-            @user.save
         end
         
         it "redirects to index page" do

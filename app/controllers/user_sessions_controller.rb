@@ -22,4 +22,4 @@ class UserSessionsController < ApplicationController
     logout
     redirect_to(new_user_session_path, notice: 'Logged out!')
   end
-  end
+end

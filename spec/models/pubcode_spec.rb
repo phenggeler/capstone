@@ -22,12 +22,6 @@ describe 'populate' do
         expect(Domain.last.name).to eq 'nelnet.com'
     end
     
-    it 'will ping api for pub' do
-       x = Pubcode.new
-       array = x.pingApiForPub('pub-5953444431482912', 'fullmooncalendar.net')
-       expect(array.any?).to eq true
-    end
-    
 end 
 
 

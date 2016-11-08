@@ -9,42 +9,28 @@ require 'net/http'
 
 class WatchersController < ApplicationController
   before_action :set_watcher, only: [:show, :edit, :update, :destroy]
-#  before_filter :zero_watchers_or_authenticated, only: [:new, :create]
 
-
-
-  # GET /watchers
-  # GET /watchers.json
   def index
     @watchers = Watcher.all
   end
 
-  # GET /watchers/1
-  # GET /watchers/1.json
   def show
   end
 
-  # GET /watchers/new
   def new
     @watcher = Watcher.new
   end
 
-  # GET /watchers/1/edit
   def edit
   end
 
-  # POST /watchers
-  # POST /watchers.json
   def create
     str = params[:watcher][:domain]
     email = params[:watcher][:email]
     frequency = params[:watcher][:frequency]
-    
     arr = Watcher.makeObj(str, email, frequency, current_user)
-    
     @watcher = arr[0]
     @content = arr[1]
-
 
     respond_to do |format|
       if @watcher.save
@@ -60,8 +46,6 @@ class WatchersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /watchers/1
-  # PATCH/PUT /watchers/1.json
   def update
     respond_to do |format|
       if @watcher.update(watcher_params)
@@ -74,8 +58,6 @@ class WatchersController < ApplicationController
     end
   end
 
-  # DELETE /watchers/1
-  # DELETE /watchers/1.json
   def destroy
     @watcher.destroy
     respond_to do |format|
@@ -85,12 +67,10 @@ class WatchersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_watcher
       @watcher = Watcher.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def watcher_params
       params.require(:watcher).permit(:domain, :email, :frequency)
     end

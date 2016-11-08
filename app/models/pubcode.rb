@@ -1,20 +1,5 @@
 class Pubcode
 
-  def pingApiForPub(mp, str)
-      parray = Array.new
-      url = URI('https://api.spyonweb.com/v1/adsense/'+mp+'?access_token=QpAlekatYxmO')
-      doc1 = Nokogiri::HTML(open(url,:allow_redirections => :all))
-      str1 =  doc1.text
-      arr= str1.split(/"/)
-      arr.each do |st|
-        if (st.include? '.')
-          if (st != str)
-            parray.push(st)
-          end
-        end
-      end
-      return parray
-  end
 
   def populate(parray, str, mp, current_user)
       parray.each do |dom|
@@ -22,8 +7,7 @@ class Pubcode
           if (dom.include? "www." )
             dom = Pubcode.removeWWW(dom)
           else
-            @domain1 = Domain.new(name: dom, pubid: mp, user: current_user)
-            @domain1.save
+            @domain1 = Domain.create(name: dom, pubid: mp, user: current_user)
           end
         end
       end

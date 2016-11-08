@@ -5,8 +5,8 @@ class AssociationBuilder
     @matchpub = matchpub
     @ping = ApiPing.new
     @populator = Populator.new
-    darray = populate_darray(@match, str, current_user)
-    parray = populate_parray(@matchpub, str, current_user)
+    populate_darray(@match, str, current_user)
+    populate_parray(@matchpub, str, current_user)
   end
   
   def populate_darray(match, str, current_user)
@@ -18,7 +18,7 @@ class AssociationBuilder
       @populator.populate(darray, str, @match, @matchpub, current_user)
     end
     
-    return darray
+    darray
   end
   
   def populate_parray(matchpub, str, current_user)
@@ -30,7 +30,7 @@ class AssociationBuilder
       @populator.populate(parray, str, @match, @matchpub[0], current_user)
     end
     
-    return parray
+    parray
   end
   
 end

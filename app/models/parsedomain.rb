@@ -5,10 +5,9 @@ class Parsedomain
     begin
       page = HTTParty.get(uri)
     rescue SocketError => e
-      #redirect_to new_domain_path, flash: {notice: "Cannot validate domain"} and return 
     end
     parse_page = Nokogiri::HTML(page)
-    return parse_page
+    parse_page
   end
 
   def findCodes(parse_page)
@@ -29,7 +28,7 @@ class Parsedomain
     else
       ids.push(nil)
     end
-    return ids
+    ids
   end
     
 end

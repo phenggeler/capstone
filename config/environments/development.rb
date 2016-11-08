@@ -3,6 +3,8 @@ Rails.application.configure do
   require 'rest_client'
   require 'json'
   # Settings specified here will take precedence over those in config/application.rb.
+  
+
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -50,6 +52,14 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  
+  
+  config.after_initialize do
+    #Enable bullet in your application
+    Bullet.enable = true
+    Bullet.console = true
+    Bullet.bullet_logger = true
+  end
   
   #config.reload_classes_only_on_change = false
 

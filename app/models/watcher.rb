@@ -23,9 +23,7 @@ class Watcher < ApplicationRecord
     @watcher.frequency = frequency
     @watcher.lastscanned = Time.new
     @content = Content.createContent(str, parse_page)
-    arr = []
-    arr.push(@watcher)
-    arr.push(@content)
-    return arr
+    arr = [@watcher, @content]
+    arr
   end
 end
