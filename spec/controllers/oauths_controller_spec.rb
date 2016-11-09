@@ -1,6 +1,7 @@
 require 'rails_helper'
 require 'spec_helper'
 
+
 describe OauthsController do
     
   describe "#callback" do

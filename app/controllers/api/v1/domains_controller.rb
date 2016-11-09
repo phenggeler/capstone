@@ -37,6 +37,8 @@ before_filter :find_domain
     respond_to do |format|
       #format.html { redirect_to domains_url, notice: 'Domain was successfully destroyed.' }
       #format.js 
+      #format.json { head :no_content }
+      format.json { render json: {status: "Domain ID #{@domain.id} deleted"}, status: :ok }
     end
   end
 
