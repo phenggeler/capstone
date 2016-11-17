@@ -100,7 +100,7 @@ config.action_mailer.smtp_settings = {
   :port => 587,
   :domain => "sandbox81cd4c03d386416687445763e2cfeffe.mailgun.org",
   :user_name => "postmaster@sandbox81cd4c03d386416687445763e2cfeffe.mailgun.org",
-  :password => "Kershisnik1!"
+  :password => "16f2f45f50f2536040726be93e8b3095"
 }
 
   
