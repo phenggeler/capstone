@@ -95,12 +95,13 @@ Rails.application.configure do
 
 config.action_mailer.delivery_method = :smtp
 config.action_mailer.smtp_settings = {
-  :user_name => '2694b327a91ada',
-  :password => '685f4ad0cab907',
-  :address => 'mailtrap.io',
-  :domain => 'mailtrap.io',
-  :port => '2525',
-  :authentication => :cram_md5
+  :authentication => :plain,
+  :address => "smtp.mailgun.org",
+  :port => 587,
+  :domain => "sandbox81cd4c03d386416687445763e2cfeffe.mailgun.org",
+  :user_name => "postmaster@sandbox81cd4c03d386416687445763e2cfeffe.mailgun.org",
+  :password => "Kershisnik1!"
 }
+
   
 end

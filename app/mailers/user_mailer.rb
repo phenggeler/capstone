@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-    default from: 'siteupdatealerts@gmail.com'
+    default from: 'me@sandbox81cd4c03d386416687445763e2cfeffe.mailgun.org'
 
 
     def welcome_email(author)

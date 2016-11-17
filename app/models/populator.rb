@@ -1,12 +1,12 @@
 class Populator
 
-  def populate(darray, str, m, mp, current_user)
+  def populate(darray, m, mp, builder)
       darray.each do |dom|
-        unless (dom == str)
+        unless (dom == builder[0])
           if (dom.include? "www." )
             dom = Uacode.removeWWW(dom)
           else
-            @domain1 = Domain.create(name: dom, uacode: m, pubid: mp, user: current_user)
+            @domain1 = Domain.create(name: dom, uacode: m, pubid: mp, user: builder[1])
           end
         end
       end

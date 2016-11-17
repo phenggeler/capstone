@@ -9,7 +9,8 @@ class Domain < ApplicationRecord
     ids = parse_for_codes(str)
     @matchpub, @match = ids[0], ids[1]
     task = AssociationBuilder.new
-    task.create_related_domains(@match, @matchpub, str, current_user)
+    builder = [str, current_user]
+    task.create_related_domains(ids, builder)
     @domain = Domain.new(name: str, uacode: @match, pubid: @matchpub, user: current_user)
     @domain
   end
@@ -32,5 +33,4 @@ class Domain < ApplicationRecord
     end
     @domains
   end
-  
 end

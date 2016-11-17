@@ -1,6 +1,6 @@
 class Api::V1::DomainsController < Api::V1::BaseController
-before_action :authenticate_user!
-before_filter :find_domain
+  before_action :authenticate_user!
+  before_filter :find_domain, only: [:show, :edit, :update, :destroy]
 
   def index
     domains = Domain.all

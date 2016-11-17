@@ -11,7 +11,7 @@ class WatchersController < ApplicationController
   before_action :set_watcher, only: [:show, :edit, :update, :destroy]
 
   def index
-    @watchers = Watcher.all
+    @watchers = Watcher.includes(:content).where(user: current_user)
   end
 
   def show

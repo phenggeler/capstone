@@ -6,7 +6,6 @@ class Parsewatcher
       page = HTTParty.get(uri)
     rescue SocketError => e
       @watcher = Watcher.new(domain: str, email: email, use: 'dead')
-      continue = false
     end
   
     parse_page = Nokogiri::HTML(page)
