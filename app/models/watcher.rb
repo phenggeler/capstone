@@ -15,7 +15,8 @@ class Watcher < ApplicationRecord
 
   def self.makeObj(str, email, frequency, current_user)
     parser = Parsewatcher.new
-    parse_page = parser.parseWatcherSite(str, email)
+    noko_objects = parser.parseWatcherSite(str, email)
+    parse_page, doc = noko_objects[0], noko_objects[1]
     @watcher = Watcher.new
     @watcher.domain = str
     @watcher.email = email

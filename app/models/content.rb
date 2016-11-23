@@ -10,12 +10,14 @@ class Content < ApplicationRecord
     p = parse_page.css('p').text
     link = parse_page.css("a").length
     linktext = parse_page.css("a").text
-    description = parse_page.xpath('//meta[@name="Description"]/@content').text
-    keywords = parse_page.xpath('//meta[@name="Keywords"]/@content').text
+    description = parse_page.xpath('//meta[translate(@name, \'ABCDEFGHIJKLMNOPQRSTUVWXYZ\', \'abcdefghijklmnopqrstuvwxyz\') ="description"]/@content').text
+    keywords = parse_page.xpath('//meta[translate(@name, \'ABCDEFGHIJKLMNOPQRSTUVWXYZ\', \'abcdefghijklmnopqrstuvwxyz\') ="keywords"]/@content').text
     source = parse_page.text
     sum = source.sum
     @content = Content.new(domain: str, url: uri, use:'live', source: source, sum: sum, title: title, p: p, h1: h1, h2: h2, h3: h3, link: link, linktext: linktext, description: description, keywords: keywords)
     @content
   end
+  
+  
   
 end

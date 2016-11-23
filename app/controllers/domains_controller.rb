@@ -64,7 +64,7 @@ class DomainsController < ApplicationController
 
   def destroy
     @domain.destroy
-      respond_to do |format|
+    respond_to do |format|
         format.js 
     end
 end

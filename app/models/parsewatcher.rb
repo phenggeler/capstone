@@ -1,3 +1,13 @@
+require 'rubygems'
+require 'httparty'
+require 'nokogiri'
+require 'json'
+require 'csv'
+require 'open-uri'
+require 'open_uri_redirections'
+require 'net/http'
+
+
 class Parsewatcher 
     
   def parseWatcherSite(str, email)
@@ -9,7 +19,10 @@ class Parsewatcher
     end
   
     parse_page = Nokogiri::HTML(page)
-    parse_page
+    puri = process_uri(uri)
+    doc = Nokogiri::HTML(open(puri))
+    noko_objects = [parse_page, doc]
+    noko_objects
   end
 
   def createContent(str, parse_page)
@@ -27,18 +40,18 @@ class Parsewatcher
       'h3' => get_h3(parse_page),
       'link' => get_link(parse_page),
       'linktext' => get_linktext(parse_page),
-      'description' => get_description(parse_page),
-      'keywords' => get_keywords(parse_page)
+      'description' => get_description(doc),
+      'keywords' => get_keywords(doc)
     }
     @content = Content.new(h)
   end
 
-  def get_keywords(parse_page)
-    parse_page.xpath("//meta[@name='keywords']/@content").text.split(", ")
+  def get_keywords(doc)
+    doc.xpath("//meta[@name='keywords']/@content").text.split(", ")
   end
   
-  def get_description(parse_page)
-    parse_page.xpath("//meta[@name='description']/@content").text
+  def get_description(doc)
+    doc.xpath("//meta[@name='description']/@content").text
   end
   
   def get_linktext(parse_page)
@@ -116,6 +129,16 @@ class Parsewatcher
           @content.save
       end
       @tmp.destroy
+    end
+  end
+  
+  private
+
+  def process_uri(uri)
+    require 'open-uri'
+    require 'open_uri_redirections'
+    open(uri, :allow_redirections => :all) do |r|
+      r.base_uri.to_s
     end
   end
 

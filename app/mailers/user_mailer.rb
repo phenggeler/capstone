@@ -32,7 +32,6 @@ class UserMailer < ApplicationMailer
     def site_change_email(watcher, mssg)
         @watcher = watcher
         @mssg = mssg
-        puts mssg
         @url  = 'https://project-phenggeler.c9users.io/'
         mail(to: @watcher.email, subject: @watcher.domain + ' has changed')
     end
