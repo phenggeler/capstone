@@ -24,7 +24,6 @@
 
   <tbody>
     <% @domains.each do |domain| %>
-    
       <tr>
       <div class = "domain-row", id ="domain-row-<%= domain.id %>">
         <td><%= link_to domain.name, domain_path(domain) %></td>
