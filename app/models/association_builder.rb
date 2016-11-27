@@ -12,7 +12,7 @@ class AssociationBuilder
     darray = []
     @match = match
     unless (@match.nil?)
-      darray = @ping.pingApiForCode(@match, builder[0], 'analytics')
+      darray = @ping.ping_api_for_code(@match, builder[0], 'analytics')
       @populator.populate(darray, @match, @matchpub, builder)
     end
   end
@@ -21,7 +21,7 @@ class AssociationBuilder
     parray = []
     @matchpub = matchpub
     unless (@matchpub.nil?)
-      parray = @ping.pingApiForCode(@matchpub[0], builder[0], 'adsense')
+      parray = @ping.ping_api_for_code(@matchpub[0], builder[0], 'adsense')
       @populator.populate(parray, @match, @matchpub[0], builder)
     end
   end

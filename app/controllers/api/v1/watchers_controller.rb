@@ -1,35 +1,29 @@
-require 'rubygems'
-require 'httparty'
-require 'nokogiri'
-require 'json'
-require 'csv'
-require 'open-uri'
-require 'open_uri_redirections'
-require 'net/http'
+class Api::V1::WatchersController < Api::V1::BaseController
 
-class WatchersController < ApplicationController
-  before_action :set_watcher, only: [:show, :edit, :update, :destroy]
+    before_action :authenticate_user!
+    before_filter :find_watcher, only: [:show, :edit, :update, :destroy]
+
 
   def index
-    @watchers = Watcher.includes(:content).where(user: current_user)
+    watchers = Watcher.all
+    render json: watchers, status: 200   # this format can be important!
   end
 
   def show
+    domain = Watcher.find(params[:id])
+    render json: domain, status: 200
   end
 
   def new
     @watcher = Watcher.new
   end
-
-  def edit
-  end
-
+  
   def create
     str = params[:watcher][:domain]
     email = params[:watcher][:email]
     frequency = params[:watcher][:frequency]
     if(Parsewatcher.is_live(str))
-      arr = Watcher.make_obj(str, email, frequency, current_user)
+      arr = Watcher.makeObj(str, email, frequency, current_user)
       @watcher, @content = arr[0], arr[1]
     else
       @watcher = Watcher.create(domain: str, email: email, frequency: frequency, use: 'dead', user: current_user)
@@ -48,7 +42,7 @@ class WatchersController < ApplicationController
       end
     end
   end
-
+  
   def update
     respond_to do |format|
       if @watcher.update(watcher_params)
@@ -60,21 +54,27 @@ class WatchersController < ApplicationController
       end
     end
   end
-
+  
   def destroy
     @watcher.destroy
     respond_to do |format|
-      format.html { redirect_to watchers_url, notice: 'watcher was successfully destroyed.' }
-      format.json { head :no_content }
+      format.json { render json: {status: "Watcher ID #{@watcher.id} deleted"}, status: :ok }
     end
   end
 
   private
+    # Use callbacks to share common setup or constraints between actions.
     def set_watcher
       @watcher = Watcher.find(params[:id])
     end
 
+    # Never trust parameters from the scary internet, only allow the white list through.
     def watcher_params
       params.require(:watcher).permit(:domain, :email, :frequency)
     end
+    
+    def find_watcher
+      @watcher = Watcher.find(params[:id])
+    end
+    
 end

@@ -9,13 +9,12 @@ require 'net/http'
 class Watcher < ApplicationRecord
   belongs_to :user
   has_one :content, dependent: :destroy
-  #belongs_to :contents, dependent: :destroy
   @list_of_urls = Array.new
   @email = nil
 
-  def self.makeObj(str, email, frequency, current_user)
+  def self.make_obj(str, email, frequency, current_user)
     parser = Parsewatcher.new
-    noko_objects = parser.parseWatcherSite(str, email)
+    noko_objects = parser.parse_watcher_site(str, email)
     parse_page, doc = noko_objects[0], noko_objects[1]
     @watcher = Watcher.new
     @watcher.domain = str
@@ -23,7 +22,8 @@ class Watcher < ApplicationRecord
     @watcher.user = current_user
     @watcher.frequency = frequency
     @watcher.lastscanned = Time.new
-    @content = Content.createContent(str, parse_page)
+    @watcher.use = 'live'
+    @content = Content.create_content(str, parse_page)
     arr = [@watcher, @content]
     arr
   end

@@ -6,32 +6,34 @@
   <body>
     Hi, <%= @watcher.email %>
     <p>
-        You have successfully created site monitoring for <%= @watcher.domain%>. This domain is currently <%= @content.use %>.
+        You have successfully created site monitoring for <%= @watcher.domain%>. This domain is currently <%= @watcher.use %>.
     </p>
   </body>
-  <table style="width:100%">-
-  <tr>
-    <th>Domain</th>
-    <th>Title</th> 
-    <th>Words in Paragraphs</th>
-    <th>H1 Headers</th>
-    <th>H2 Headers</th>
-    <th>H3 Headers</th>
-    <th># Links on Page</th>
-    <th>Description</th>
-    <th>Keywords</th>
-  </tr>
-  <tr>
-    <td><%= @watcher.domain %></td>
-    <td><%= @content.title %></td>
-    <td><%= @content.p.split(" ").length %></td>
-    <td><%= @content.h1.split(" ").length %></td>
-    <td><%= @content.h2.split(" ").length %></td>
-    <td><%= @content.h3.split(" ").length %></td>
-    <td><%= @content.link %></td>
-    <td><%= @content.description %></td>
-    <td><%= @content.keywords %></td>
-  </tr>
-</table>
+  <% if @watcher.use.eql? 'live' %>
+    <table style="width:100%">-
+    <tr>
+      <th>Domain</th>
+      <th>Title</th> 
+      <th>Words in Paragraphs</th>
+      <th>H1 Headers</th>
+      <th>H2 Headers</th>
+      <th>H3 Headers</th>
+      <th># Links on Page</th>
+      <th>Description</th>
+      <th>Keywords</th>
+    </tr>
+    <tr>
+      <td><%= @watcher.domain %></td>
+      <td><%= @content.title %></td>
+      <td><%= @content.p.split(" ").length %></td>
+      <td><%= @content.h1.split(" ").length %></td>
+      <td><%= @content.h2.split(" ").length %></td>
+      <td><%= @content.h3.split(" ").length %></td>
+      <td><%= @content.link %></td>
+      <td><%= @content.description %></td>
+      <td><%= @content.keywords %></td>
+    </tr>
+  </table>
+  <%end%>
   
 </html>

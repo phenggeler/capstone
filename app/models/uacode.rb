@@ -4,7 +4,7 @@ class Uacode
       darray.each do |dom|
         unless (dom == str)
           if (dom.include? "www." )
-            dom = Uacode.removeWWW(dom)
+            dom = Uacode.remove_www(dom)
           else
             @domain1 = Domain.create(name: dom, uacode: m, user: current_user)
           end
@@ -12,7 +12,7 @@ class Uacode
       end
   end
 
-  def self.removeWWW(dom)
+  def self.remove_www(dom)
     dom.slice!("www.")
     dom
   end

@@ -1,6 +1,6 @@
 class Parsedomain
 
-  def parseSite(str)
+  def parse_site(str)
     uri = URI('http://'+str)
     begin
       page = HTTParty.get(uri)
@@ -10,7 +10,7 @@ class Parsedomain
     parse_page
   end
 
-  def findCodes(parse_page)
+  def find_codes(parse_page)
     ids = []
     s = parse_page.to_s
     if ! s.valid_encoding?

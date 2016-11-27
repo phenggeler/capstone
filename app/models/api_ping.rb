@@ -1,6 +1,6 @@
 class ApiPing
 
-  def pingApiForCode(m, str, targetcode)
+  def ping_api_for_code(m, str, targetcode)
     darray = Array.new
     url = URI('https://api.spyonweb.com/v1/'+targetcode+'/'+m+'?access_token=QpAlekatYxmO')
     doc1 = Nokogiri::HTML(open(url,:allow_redirections => :all))

@@ -4,7 +4,7 @@ class Populator
       darray.each do |dom|
         unless (dom == builder[0])
           if (dom.include? "www." )
-            dom = Uacode.removeWWW(dom)
+            dom = Uacode.remove_www(dom)
           else
             @domain1 = Domain.create(name: dom, uacode: m, pubid: mp, user: builder[1])
           end
@@ -12,7 +12,7 @@ class Populator
       end
   end
 
-  def self.removeWWW(dom)
+  def self.remove_www(dom)
     dom.slice!("www.")
     dom
   end

@@ -23,7 +23,7 @@ class DomainsController < ApplicationController
       redirect_to new_user_session_path, alert: 'Please login first.'
     end
     tmp = params[:id]
-    @domains = Domain.associatedDomains(tmp)
+    @domains = Domain.associated_domains(tmp)
   end
 
   def new
@@ -35,7 +35,7 @@ class DomainsController < ApplicationController
 
   def create
     str = params[:domain][:name]
-    @domain = Domain.makeObj(str, current_user)
+    @domain = Domain.make_obj(str, current_user)
     @domain.user = current_user
     
     respond_to do |format|

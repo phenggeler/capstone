@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       # normal route commands go in here!
       # for instance,
       resources :domains, only: [:index, :show, :create, :new, :destroy]
+      resources :watchers, only: [:index, :show, :create, :new, :destroy]
     end
   end
   

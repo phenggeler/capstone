@@ -5,7 +5,7 @@ class Pubcode
       parray.each do |dom|
         unless (dom == str)
           if (dom.include? "www." )
-            dom = Pubcode.removeWWW(dom)
+            dom = Pubcode.remove_www(dom)
           else
             @domain1 = Domain.create(name: dom, pubid: mp, user: current_user)
           end
@@ -13,7 +13,7 @@ class Pubcode
       end
   end
 
-  def self.removeWWW(dom)
+  def self.remove_www(dom)
     dom.slice!("www.")
     dom
   end

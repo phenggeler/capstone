@@ -5,7 +5,7 @@ class Domain < ApplicationRecord
   validates :name, presence: true
   belongs_to :user
   
-  def self.makeObj(str, current_user)
+  def self.make_obj(str, current_user)
     ids = parse_for_codes(str)
     @matchpub, @match = ids[0], ids[1]
     task = AssociationBuilder.new
@@ -17,12 +17,12 @@ class Domain < ApplicationRecord
   
   def self.parse_for_codes(str)
     parser = Parsedomain.new
-    parse_page = parser.parseSite(str)
-    ids = parser.findCodes(parse_page)
+    parse_page = parser.parse_site(str)
+    ids = parser.find_codes(parse_page)
     ids
   end
   
-  def self.associatedDomains(tmp)
+  def self.associated_domains(tmp)
     @domain = tmp
     @domains = Array.new
     tua = Domain.find(@domain).uacode
