@@ -9,7 +9,7 @@ class UserMailer < ApplicationMailer
     
     def new_user_email(signup)
         @signup = signup
-        #mail(to: 'peter.john.henggeler@gmail.com', subject: @signup.username + " has requested access to site")
+        mail(to: 'peter.john.henggeler@gmail.com', subject: @signup.username + " has requested access to site")
     end
     
     def approval_user_email(user)

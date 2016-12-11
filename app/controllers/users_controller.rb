@@ -33,6 +33,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         UserMailer.welcome_email(@user).deliver
+        UserMailer.new_user_email(@user).deliver
         flash[:notice] = "You will be contacted once your account has been approved"
         format.html { redirect_to @user }
         format.json { render :show, status: :created, location: @user }
