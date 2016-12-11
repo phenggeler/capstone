@@ -11,10 +11,6 @@ class Api::V1::DomainsController < Api::V1::BaseController
     domain = Domain.find(params[:id])
     render json: domain, status: 200
   end
-
-  def new
-    @domain = Domain.new
-  end
   
   def create
     str = params[:domain][:name]

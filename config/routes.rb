@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :domains do 
+    get :new_watcher
     collection do
         get 'facebook'
     end

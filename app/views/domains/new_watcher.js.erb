@@ -1,0 +1,8 @@
+$row = $('#domain-row-<%= @domain.id %>');
+$button = $row.find('.new-watcher-button');
+
+
+$button.after('<%= j render('domains/form2') %>');
+$button.hide();
+
+

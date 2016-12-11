@@ -12,10 +12,10 @@ RSpec.describe WatchersController, type: :controller do
     
 describe "Post #create" do
     
-    subject { post :create, :watcher => { :domain => "dogville.com", :email => 'test@test.com' }}
+    subject { post :create, :watcher => { :domain => "cnn.com", :email => 'test@test.com' }}
 
     it "responds with 302 status" do
-      post :create, watcher: {domain: 'dogville.com', email: 'test@test.com'}
+      post :create, watcher: {domain: 'cnn.com', email: 'test@test.com'}
       expect(response.status).to eq(302)            
     end
     

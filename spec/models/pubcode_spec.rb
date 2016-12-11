@@ -7,7 +7,7 @@ RSpec.describe Pubcode, type: :model do
 
 describe 'populate' do
     it 'will remove wwww from list' do
-        x = Pubcode.removeWWW('www.markmonitor.com')
+        x = Pubcode.remove_www('www.markmonitor.com')
         expect(x).to eq ('markmonitor.com')
     end
     

@@ -1,12 +1,3 @@
-require 'rubygems'
-require 'httparty'
-require 'nokogiri'
-require 'json'
-require 'csv'
-require 'open-uri'
-require 'open_uri_redirections'
-require 'net/http'
-
 
 class DomainsController < ApplicationController
   before_action :set_domain, only: [:show, :edit, :update, :destroy]
@@ -24,6 +15,9 @@ class DomainsController < ApplicationController
     end
     tmp = params[:id]
     @domains = Domain.associated_domains(tmp)
+  end
+  
+  def facebook
   end
 
   def new
@@ -67,7 +61,15 @@ class DomainsController < ApplicationController
     respond_to do |format|
         format.js 
     end
-end
+  end
+  
+  def new_watcher
+    @watcher = Watcher.new
+    @domain = Domain.find(params[:domain_id])
+    respond_to do |format|
+        format.js 
+    end
+  end
 
 private
   

@@ -13,10 +13,6 @@ class Api::V1::WatchersController < Api::V1::BaseController
     domain = Watcher.find(params[:id])
     render json: domain, status: 200
   end
-
-  def new
-    @watcher = Watcher.new
-  end
   
   def create
     str = params[:watcher][:domain]

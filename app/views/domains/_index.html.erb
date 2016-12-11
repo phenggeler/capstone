@@ -1,0 +1,17 @@
+  <tbody>
+    <% @domains.where(user: current_user).each do |domain| %>
+      <tr class = "domain-row", id ="domain-row-<%= domain.id %>">
+        <td><%= link_to domain.name, domain_path(domain) %></td>
+        <td><%= domain.uacode %></td>
+        <td><%= domain.pubid %></td>
+        <td><%= domain.user.username %></td>
+        <% if domain.has_watcher%>
+          <td><%= 'Currently Monitoring' %></td>
+        <% else %>
+          <td id = "monitoring-status-column-<%=domain.id %>"><%= link_to "Start Monitoring", domain_new_watcher_path(domain.id), remote: true, class: "new-watcher-button"%></td>
+        <% end %>
+        <td><%= link_to 'Edit', edit_domain_path(domain) %></td>
+        <td><%= link_to "Delete", domain, method: :destroy, data: {confirm: "Are you sure?"}, class: 'destroy-link', remote: true , :class => 'delete_domain'%></td>
+      </tr>
+    <% end %>
+  </tbody>

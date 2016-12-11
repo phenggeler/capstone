@@ -14,5 +14,13 @@
           expect(assigns(:current_user)).to eq user
         end
       end
+      
+      describe "#authorize_user" do
+        skip 'finds user by their token' do
+          authorize_user
+          expect(response).to be(403)
+        end
+      end
+      
     end
   end

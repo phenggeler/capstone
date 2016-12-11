@@ -5,6 +5,10 @@ class Domain < ApplicationRecord
   validates :name, presence: true
   belongs_to :user
   
+  def has_watcher
+    Watcher.where(domain: name).where(user_id: user_id).count > 0
+  end
+  
   def self.make_obj(str, current_user)
     ids = parse_for_codes(str)
     @matchpub, @match = ids[0], ids[1]

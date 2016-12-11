@@ -10,15 +10,12 @@
       </ul>
     </div>
   <% end %>
-  <p>
-    <%= f.label :domain%><br>
-    <%= f.text_field :domain %>
-  </p>
-  
-  <p>
-    <%= f.label :email%><br>
-    <%= f.text_field :email %>
-  </p>
+  <div class="field">
+    <%= f.hidden_field :domain, :value => @domain %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :email, :value => @email %>
+  </div>
   <p>
    <%= f.radio_button(:frequency, "min") %> 
    <%= f.label(:frequency, "Every 10 Minutes") %>

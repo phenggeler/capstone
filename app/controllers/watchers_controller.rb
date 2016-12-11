@@ -19,6 +19,10 @@ class WatchersController < ApplicationController
 
   def new
     @watcher = Watcher.new
+    respond_to do|format|
+      format.html {render :new}
+      format.js {render js: :new}
+    end
   end
 
   def edit
@@ -35,16 +39,14 @@ class WatchersController < ApplicationController
       @watcher = Watcher.create(domain: str, email: email, frequency: frequency, use: 'dead', user: current_user)
       @content = Content.create_dead_content(str)
     end
-    respond_to do |format|
-      if @watcher.save
-        @content.watcher_id = @watcher.id
-        @content.save
-        UserMailer.new_watcher_email(@watcher, @content).deliver
+    if @watcher.save
+      @content.watcher_id = @watcher.id
+      @content.save
+      UserMailer.new_watcher_email(@watcher, @content).deliver
+      respond_to do |format|
         format.html { redirect_to @watcher, notice: 'watcher was successfully created.' }
-        format.json { render :show, status: :created, location: @watcher }
-      else
-        format.html { render :new }
-        format.json { render json: @watcher.errors, status: :unprocessable_entity }
+        #format.json { render json: @watcher.errors, status: :unprocessable_entity }
+        format.js { redirect_to domains_path, notice: 'watcher was successfully created.' }
       end
     end
   end

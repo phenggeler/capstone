@@ -10,7 +10,6 @@ require 'net/http'
 
 class Parsewatcher 
   
-  
   def self.is_live(str)
     uri = URI('http://'+str)
     begin

@@ -6,9 +6,7 @@
 <h2>Results for <%= @domain.name %></h2>
 <h3>UA Code for <%= @domain.uacode %></h3>
 <h3>User Who Created  <%= @domain.user.email %></h3>
-
-<button id="hide">Hide</button>
-<button id="show">Show</button>
+<%= link_to "Start Monitoring", new_watcher_path, remote: true, class: 'new-watcher-button'%>
 
 <table>
   <thead>

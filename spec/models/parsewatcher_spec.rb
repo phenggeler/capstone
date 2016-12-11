@@ -12,8 +12,8 @@ let (:watcher2) {Watcher.create(domain: 'thedomains.com', email: 'peter.john.hen
 describe 'current? comparisons' do
     it 'will update title current?' do
       parser = Parsewatcher.new
-      parse_page = parser.parseWatcherSite('cnn.com', "fake@fake.com")[0]
-      content = parser.createContent('cnn.com', parse_page )
+      parse_page = parser.parse_watcher_site('cnn.com', "fake@fake.com")[0]
+      content = Content.create_content('cnn.com', parse_page )
       watcher.content_id = content.id
       tmp = 'else'
       parser.current?(watcher,content)
@@ -22,8 +22,8 @@ describe 'current? comparisons' do
     
     it 'will update title current?' do
       parser = Parsewatcher.new
-      parse_page = parser.parseWatcherSite('cnn.com', "fake@fake.com")[0]
-      content = parser.createContent('cnn.com', parse_page )
+      parse_page = parser.parse_watcher_site('cnn.com', "fake@fake.com")[0]
+      content = Content.create_content('cnn.com', parse_page )
       watcher.content_id = content.id
       tmp = 'else'
       parser.current?(watcher2,content)
@@ -34,7 +34,7 @@ end
 describe 'parse watcher site' do
     it 'will return parse_page' do
       parse = Parsewatcher.new
-      parse_page = parser.parseWatcherSite('cnn.com', "fake@fake.com")
+      parse_page = parser.parse_watcher_site('cnn.com', "fake@fake.com")
       expect(parse_page).not_to be nil
     end
 end
