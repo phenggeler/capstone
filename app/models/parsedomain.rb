@@ -1,7 +1,9 @@
+require 'httparty'
+
 class Parsedomain
 
   def parse_site(str)
-    uri = URI('http://'+str)
+    uri = URI('http://'+str.to_s)
     begin
       page = HTTParty.get(uri)
     rescue SocketError => e

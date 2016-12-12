@@ -8,19 +8,5 @@
         controller.request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.api_auth_token)
         controller.authenticate_user!
       end
-
-      describe "#authenticate_user!" do
-        skip 'finds user by their token' do
-          expect(assigns(:current_user)).to eq user
-        end
-      end
-      
-      describe "#authorize_user" do
-        skip 'finds user by their token' do
-          authorize_user
-          expect(response).to be(403)
-        end
-      end
-      
     end
   end
