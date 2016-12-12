@@ -15,6 +15,9 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   before_create :generate_api_auth_token
 
+  def is_admin
+    admin
+  end
     
   def self.verified?(email)
     @tmp = User.where("email = ?", email).first

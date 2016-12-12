@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161123173020) do
+ActiveRecord::Schema.define(version: 20161212184928) do
 
   create_table "authentications", force: :cascade do |t|
     t.integer  "user_id",    null: false
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20161123173020) do
     t.string   "provider"
     t.string   "uid"
     t.string   "api_auth_token"
+    t.boolean  "admin"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["provider"], name: "index_users_on_provider"
     t.index ["uid"], name: "index_users_on_uid"
