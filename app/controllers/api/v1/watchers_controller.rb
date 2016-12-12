@@ -19,7 +19,7 @@ class Api::V1::WatchersController < Api::V1::BaseController
     email = params[:watcher][:email]
     frequency = params[:watcher][:frequency]
     if(Parsewatcher.is_live(str))
-      arr = Watcher.makeObj(str, email, frequency, current_user)
+      arr = Watcher.make_obj(str, email, frequency, current_user)
       @watcher, @content = arr[0], arr[1]
     else
       @watcher = Watcher.create(domain: str, email: email, frequency: frequency, use: 'dead', user: current_user)

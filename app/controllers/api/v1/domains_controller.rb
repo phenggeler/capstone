@@ -14,7 +14,7 @@ class Api::V1::DomainsController < Api::V1::BaseController
   
   def create
     str = params[:domain][:name]
-    @domain = Domain.makeObj(str, current_user)
+    @domain = Domain.make_obj(str, current_user)
     @domain.user = current_user
 
     respond_to do |format|
