@@ -9,8 +9,10 @@ require 'net/http'
 class Watcher < ApplicationRecord
   belongs_to :user
   has_one :content, dependent: :destroy
-  @list_of_urls = Array.new
-  @email = nil
+
+  
+  scope :by_user, -> { joins(:user) }
+
 
   def self.make_obj(str, email, frequency, current_user)
     parser = Parsewatcher.new

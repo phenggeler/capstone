@@ -5,6 +5,9 @@ class Domain < ApplicationRecord
   validates :name, presence: true
   belongs_to :user
   
+  scope :by_user, -> { joins(:user) }
+
+  
   def has_watcher
     Watcher.where(domain: name).where(user_id: user_id).count > 0
   end

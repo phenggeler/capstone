@@ -1,7 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 
-<%= link_to 'New Watcher', new_watcher_path %> <br>
+<div class = "left">
+<h3><%= Watcher.by_user.count %> Sites Being Monitored </h3>
+</div>
+
+<div class = "right">
+<%= link_to 'New Watcher', new_watcher_path, class: "button" %> 
+</div>
+
 <% if logged_in? %>
 <table>
   <thead>
@@ -11,6 +18,8 @@
       <th>User</th>
       <th>email</th>
       <th>Status</th>
+      <th> </th>
+      <th> </th>
     </tr>
   </thead>
   <tbody>
