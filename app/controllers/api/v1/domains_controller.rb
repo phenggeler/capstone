@@ -37,6 +37,18 @@ class Api::V1::DomainsController < Api::V1::BaseController
       format.json { render json: {status: "Domain ID #{@domain.id} deleted"}, status: :ok }
     end
   end
+  
+  def update
+    respond_to do |format|
+      if @domain.update(domain_params)
+        format.html { redirect_to @domain, notice: 'Domain was successfully updated.' }
+        format.json { render :show, status: :ok, location: @domain }
+      else
+        format.html { render :edit }
+        format.json { render json: @domain.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -38,6 +38,18 @@ class Api::V1::WatchersController < Api::V1::BaseController
       end
     end
   end
+  
+  def update
+    respond_to do |format|
+      if @watcher.update(watcher_params)
+        format.html { redirect_to @watcher, notice: 'watcher was successfully updated' }
+        format.json { render :show, status: :ok, location: @watcher }
+      else
+        format.html { render :edit }
+        format.json { render json: @watcher.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   def destroy
     @watcher.destroy
